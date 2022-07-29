@@ -14,7 +14,7 @@ public class Main {
 		System.out.println("Enter Password");
 		String password = myObj.nextLine();
 		
-		int permission = 3;//placeholder variable
+		int permission = 3;//placeholder variable delete later!
 		
 		//Pseudo code:
 		//check username and password(&&) against database
