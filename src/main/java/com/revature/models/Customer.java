@@ -1,11 +1,7 @@
-package com.revature;
+package com.revature.models;
 
-public class Customer {
-
-		
-	public String firstName;
-	public String lastName;
-	public String password;
+public class Customer extends Account{
+	
 	public int permissions = 2;
 	
 	public  Customer(String firstName, String lastName, String password) {
@@ -13,6 +9,11 @@ public class Customer {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.password = password;
+	}
+
+	public Customer(int permissions) {
+		super();
+		this.permissions = permissions;
 	}
 	
 	
