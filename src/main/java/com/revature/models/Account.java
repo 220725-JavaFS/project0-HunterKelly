@@ -3,16 +3,24 @@ package com.revature.models;
 import java.util.Objects;
 
 public class Account {
-	public String firstName;	
+	public String firstName;
+	public String lastName;
 	public String password;
+	
+	
 	public String getFirstName() {
 		return firstName;
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
-	
+		
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	public String getPassword() {
 		return password;
 	}
@@ -43,8 +51,10 @@ public class Account {
 	}
 	@Override
 	public String toString() {
-		return "Account [firstName=" + firstName + ", password=" + password + "]";
+		return "Account [firstName=" + firstName + ", lastName=" + lastName + ", password=" + password + "]";
 	}
+	
+	
 	
 	
 	
