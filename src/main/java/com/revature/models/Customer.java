@@ -7,12 +7,9 @@ import com.revature.views.Main;
 public class Customer extends Account{
 	Scanner scan = new Scanner(System.in);
 	public int permissions = 2;
-	int TotalFunds;
-	public Customer(String firstName, String lastName, String password) {
-		super(firstName, lastName);
-		
-	}
-
+	public String Name;
+	//int TotalFunds = SELECT accountbalance FROM TABLE accounts WHERE user_name == userName;
+	
 	public int getPermissions() {
 		return permissions;
 	}
@@ -21,13 +18,22 @@ public class Customer extends Account{
 		this.permissions = permissions;
 	}
 
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
 	public void CustMenu() {
 		System.out.println("");		
-		System.out.println("Welcome Customer, please choose a number from the following");	
+		System.out.println("Welcome " + Name + ", please choose a number from the following");	
 		System.out.println("1. Check Account Balance");
 		System.out.println("2. Add funds to account");
 		System.out.println("3. Withdraw funds");
-		System.out.println("4. Logout");
+		System.out.println("4. Change password");
+		System.out.println("5. Logout");
 		
 		String answer = scan.nextLine();
 		
@@ -47,7 +53,7 @@ public class Customer extends Account{
 			System.out.println("");
 			System.out.println("You have " + TotalFunds + " in your account.");
 			
-			//add Funds to database "money" column.		
+			//SET accountbalance FROM TABLE accounts WHERE userName == username VALUE TotalFunds;		
 			
 			CustMenu();
 			
@@ -67,6 +73,12 @@ public class Customer extends Account{
 			CustMenu();
 			}
 		case 4:			
+			System.out.println("Enter new password");
+			String newPassword = scan.nextLine();
+			
+			//Update password FROM TABLE accounts == newPassword;
+			
+		case 5:			
 			System.out.println("Thank you for using Fakedelity, have a nice day!");
 			System.exit(0);
 			

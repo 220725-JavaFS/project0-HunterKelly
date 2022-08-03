@@ -18,25 +18,31 @@ public class Login {
 	
 	//I want passwords on its own scanner for now to have better isolation/manipulation.
 	System.out.println("Enter Password");
-	String password = myObj2.nextLine();
-	userName = userName.toLowerCase();
-	
-	//This will be re-done into Database referencing	
-	if(userName.equals("admin") && password.equals("password")) {
-		Admin admin1 = new Admin(userName, password);
+	String Password = myObj2.nextLine();	
+	try {
+	//String UserName = SELECT username from TABLE accounts WHERE username == userName;
+	//String ThePassword = SELECT password FROM TABLE accounts WHERE password == Password;
+		
+		
+	if(userName.equals("admin") && Password.equals("password")) {
+		Admin admin1 = new Admin();
 		admin1.AdMenu();
 	}
-	else if(userName.equals("banker") && password.equals("password")) {
-		Banker banker = new Banker(userName, password);
+	else if(userName.equals("banker") && Password.equals("password")) {
+		Banker banker = new Banker();
+		banker.BankerMenu();
 	}
-	else if(userName.equals("customer") && password.equals("password")){
-		Customer customer = new Customer("Frankie", "Winterbean", password);
+	else if(userName.equals(UserName) && Password.equals(ThePassword)){
+		Customer customer = new Customer();
 		customer.CustMenu();
 		
 	}
 	else {
 		System.out.println("Login Failed, please try again.");
 		System.exit(0);
+	}
+	}catch(Exception e) {
+		System.out.println("Invalid Username");
 	}
 }
 
