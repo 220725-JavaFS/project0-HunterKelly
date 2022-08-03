@@ -30,7 +30,9 @@ public class Customer extends Account{
 		System.out.println("4. Logout");
 		
 		String answer = scan.nextLine();
+		
 		int answerNum = Integer.parseInt(answer);
+		try {
 		switch (answerNum) {
 		
 		case 1:
@@ -52,7 +54,10 @@ public class Customer extends Account{
 		case 3: 
 			System.out.println("How many dollars would you like to take out?");
 			String SubtractFunds = scan.nextLine();
-			int SubFunds = Integer.parseInt(SubtractFunds);			
+			int SubFunds = Integer.parseInt(SubtractFunds);	
+			if(SubFunds > TotalFunds) {
+				System.out.println("You do not have enough Funds for this transaction.");
+			}else {
 			TotalFunds = TotalFunds - SubFunds;
 			System.out.println("");
 			System.out.println("You have " + TotalFunds + " in your account.");
@@ -60,7 +65,7 @@ public class Customer extends Account{
 			//subtract funds from "money" column.
 			
 			CustMenu();
-			
+			}
 		case 4:			
 			System.out.println("Thank you for using Fakedelity, have a nice day!");
 			System.exit(0);
@@ -68,7 +73,11 @@ public class Customer extends Account{
 		default: 
 			System.out.println("Choose a valid number");
 			CustMenu();
-		}			
+		}	
+		}catch(Exception e) {
+			System.out.println("You must type in a number");
+			CustMenu();
+		}
 	}
 	
 	

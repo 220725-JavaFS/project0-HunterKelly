@@ -29,7 +29,7 @@ public class Main {
 		case "y": 
 			CreateAccount Theaccount = new CreateAccount();
 			Theaccount.CreateTheAccount();
-			//break;
+			//break; commenting this out to allow the next case to activate
 			
 		case "n":
 		Login DotheLogin = new Login();

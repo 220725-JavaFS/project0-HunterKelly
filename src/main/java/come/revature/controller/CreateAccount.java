@@ -15,14 +15,17 @@ import java.util.Scanner;
 			System.out.println("What is your last name?");
 			String LastName = myObj.nextLine();
 			
+			System.out.println("Create a password");
+			String password = myObj.nextLine();
+			
 			System.out.println("Do you have a credit score of over 500? Y or N?");
 			String Credit = myObj.nextLine();
 			
-			//Create NEW ACCOUNT WITH DEFAULT PERM OF 2,
+			//Create NEW ACCOUNT WITH DEFAULT PERM OF 3,
 			System.out.println("Thank you for the information, a Banker will approve or deny your application");
 			
 		}
-		//this is for all the generic methods that the classes or main method can call for various reasons.
+		
 	}
 
 

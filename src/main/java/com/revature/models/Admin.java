@@ -26,7 +26,7 @@ public void AdMenu() {
 		System.out.println("1. Print out Banker Records");
 		System.out.println("2. Print out Customer Records");
 		System.out.println("3. CRUD Banker Accounts");
-		System.out.println("3. CRUD Customer Accounts");
+		System.out.println("4. CRUD Customer Accounts");
 		String answer = scan.nextLine();
 		switch (answer) {		
 		
