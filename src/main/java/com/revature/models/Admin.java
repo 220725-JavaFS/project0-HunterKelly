@@ -1,10 +1,9 @@
 package com.revature.models;
 
 import java.util.Scanner;
-
 import com.revature.repositories.Queries;
 import com.revature.services.CreateAccount;
-import com.revature.services.ShowAllCustomers;
+
 
 public class Admin extends Account{
 	Scanner scan = new Scanner(System.in);
@@ -34,8 +33,8 @@ public class Admin extends Account{
 			case "3": 			
 				System.out.println("Type the Customer user name to Delete.");
 				String DeleteThis = scan.nextLine();
-				String FirstName = AdminQueries.getFirstName(DeleteThis);
-				String LastName = AdminQueries.getLastName(DeleteThis);
+				String FirstName = Queries.getFirstName(DeleteThis);
+				String LastName = Queries.getLastName(DeleteThis);
 				AdminQueries.DeleteCustomer(DeleteThis);
 				System.out.println(FirstName + " " + LastName + "has been removed from the database.");
 				AdMenu();

@@ -3,7 +3,8 @@ package com.revature.models;
 import java.util.Scanner;
 
 import com.revature.repositories.Queries;
-import com.revature.views.Main;
+
+import come.revature.controller.Main;
 
 public class Customer extends Account{
 	Scanner scan = new Scanner(System.in);
@@ -13,8 +14,7 @@ public class Customer extends Account{
 	public float AccountBalance;
 	public boolean Credit;
 	double TotalFunds = 0.00;
-	Queries CustomerQueries = new Queries();
-	double CurrentBalance = CustomerQueries.CheckBalance();
+	Queries CustomerQueries = new Queries();	
 	
 	public int getPermissions() {
 		return Permissions;
@@ -71,22 +71,15 @@ public class Customer extends Account{
 			try {
 				switch (answerNum) {		
 					case 1:									
-						System.out.println("You currently have: " + CurrentBalance + " in your account");
-									
+						CustomerQueries.CheckBalance();									
 						CustMenu();
 						
 					case 2:										
 			
 						System.out.println("How much money would you like to add?");
 						String AddFunds = scan.nextLine();
-						double Funds = Integer.parseInt(AddFunds);			
-									
-						CurrentBalance = CurrentBalance + Funds;				
-						CustomerQueries.AddFunds(CurrentBalance);
-			
-						System.out.println("");
-						System.out.println("You have " + CurrentBalance + " in your account.");					
-			
+						double Funds = Integer.parseInt(AddFunds);											
+						CustomerQueries.AddFunds(Funds);										
 						CustMenu();
 			
 					case 3: 

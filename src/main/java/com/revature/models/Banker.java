@@ -1,9 +1,8 @@
 package com.revature.models;
 
 import java.util.Scanner;
-
 import com.revature.repositories.Queries;
-import com.revature.services.ShowAllCustomers;
+
 
 public class Banker extends Account{	
 	Scanner scan = new Scanner(System.in);	
@@ -12,7 +11,7 @@ public class Banker extends Account{
 	public void BankerMenu() {
 		System.out.println("");
 		System.out.println("Welcome Banker, please choose a number from the following");		
-		System.out.println("1. Print out Customer Records");
+		System.out.println("1. Print out all Customer Records");
 		System.out.println("2. Approve or Deny Customer Applications");
 		System.out.println("3. View Denied Applications");
 		System.out.println("4. Approve All Good Credit Applications.");
@@ -24,8 +23,8 @@ public class Banker extends Account{
 			switch (answer) {		
 		
 			case "1":				
-				ShowAllCustomers ShowThem = new ShowAllCustomers();
-				ShowThem.showAllCustomers();			
+				BankerQueries.PrintCustomerList();	
+				BankerMenu();
 			
 			case "2": 						
 				System.out.println("Type the Customer user name to Approve or Deny.");							

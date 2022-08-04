@@ -1,4 +1,4 @@
-package com.revature.views;
+package come.revature.controller;
 
 import java.util.Scanner;
 import com.revature.repositories.Queries;

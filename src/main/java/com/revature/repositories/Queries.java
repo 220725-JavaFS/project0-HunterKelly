@@ -1,18 +1,10 @@
 package com.revature.repositories;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-
 
 //*******All of the SQL Database Interaction Methods and Connections are stored here******
 
-public class Queries {
-	private final String url = "jdbc:postgresql://assoc220725db.cekyyol8wngg.us-east-2.rds.amazonaws.com/postgre";
-    private final String user = "postgres";
-    private final String password = "bleedorange";
-    
+public class Queries {	
+    double CurrentBalance = 0.00;
         
     
    public static String getFirstName(String UserName){
@@ -40,7 +32,7 @@ public class Queries {
     }    
     
     //***********Admin Queries**********    
-    public String[][] PrintCustomerList() {
+    public void PrintCustomerList() {
     	String[][] AllCustomers = new String[100][5];
 		//AllCustomers = QUERY ALL Customers with Perm 2 and add to array 
 		
@@ -56,7 +48,7 @@ public class Queries {
 			
 			}
 		}
-    	return AllCustomers;
+    	
     }
     
     public void DeleteCustomer(String DeleteThis) {
@@ -100,15 +92,17 @@ public class Queries {
     //*******Customer Queries**********
     
     public double CheckBalance() {
+    	double AccountBalance = 0.00;
+    	    	   	    	    	 
+    	//double AccountBalance = AccountBalance + Query Database for account balance 
     	
-    	double CurrentBalance = 0.00;    	   	    	    	 
-    	//CurrentBalance = Query Database for account balance 
-    	
-    	return CurrentBalance;
+    	return AccountBalance;
     }
     
     public void AddFunds(double Funds) {
+    	//Select Current Balance, Add Funds, 
     	
+    	System.out.println("You had added " + Funds + " to your account.");
     }
     
     public void SubtractFunds(double SubtractFunds) {
