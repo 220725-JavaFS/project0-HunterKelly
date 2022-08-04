@@ -9,6 +9,7 @@ import com.revature.repositories.Queries;
 
 public class Login {
 	int i = 1;
+	boolean CheckUserName = false;
 	Queries Login = new Queries();
 	Scanner myObj = new Scanner(System.in);
 	Scanner myObj2 = new Scanner(System.in);
@@ -30,9 +31,9 @@ public class Login {
 		Banker banker = new Banker();
 		banker.BankerMenu();
 		}
-		else { try {				
+		else if(!CheckUserName) {				
 		
-			String[] LoginCheck =Queries.username();		
+			String[] LoginCheck = Queries.Allusername();		
 		
 			for(int i=0; i<LoginCheck.length; i++) {				
 		
@@ -41,9 +42,8 @@ public class Login {
 				customer.CustMenu();
 				}
 			}
-			//IF Login Fails 3 times, Program Exits		
-		}
-			catch(Exception e) {
+		}//IF Login Fails 3 times, Program Exits		
+		else {
 				System.out.println("Login Failed, please try again.");
 				i= i++;
 				if(i < 4) {
@@ -59,5 +59,5 @@ public class Login {
 	
 	
 	
-}
+
 	

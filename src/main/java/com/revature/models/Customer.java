@@ -13,6 +13,8 @@ public class Customer extends Account{
 	public float AccountBalance;
 	public boolean Credit;
 	double TotalFunds = 0.00;
+	Queries CustomerQueries = new Queries();
+	double CurrentBalance = CustomerQueries.CheckBalance();
 	
 	public int getPermissions() {
 		return Permissions;
@@ -63,70 +65,67 @@ public class Customer extends Account{
 		System.out.println("4. Change password");
 		System.out.println("5. Logout");
 		System.out.println("");
-		String answer = scan.nextLine();
-		
+		String answer = scan.nextLine();		
 		int answerNum = Integer.parseInt(answer);
-		try {
-		switch (answerNum) {
 		
-		case 1:
-			
-			Queries CheckBal = new Queries();
-			CheckBal.CheckBalance();
+			try {
+				switch (answerNum) {		
+					case 1:									
+						System.out.println("You currently have: " + CurrentBalance + " in your account");
 									
-			CustMenu();
-		case 2:
+						CustMenu();
+						
+					case 2:										
 			
-			Queries AddMoney = new Queries();			
-			double CurrentBalance = AddMoney.CheckBalance();
+						System.out.println("How much money would you like to add?");
+						String AddFunds = scan.nextLine();
+						double Funds = Integer.parseInt(AddFunds);			
+									
+						CurrentBalance = CurrentBalance + Funds;				
+						CustomerQueries.AddFunds(CurrentBalance);
 			
-			System.out.println("How many dollars would you like to add?");
-			String AddFunds = scan.nextLine();
-			double Funds = Integer.parseInt(AddFunds);
+						System.out.println("");
+						System.out.println("You have " + CurrentBalance + " in your account.");					
 			
-			TotalFunds = TotalFunds + CurrentBalance;			
-			TotalFunds = TotalFunds + Funds;			
+						CustMenu();
 			
-			AddMoney.AddFunds(TotalFunds);
+					case 3: 
+						System.out.println("How many dollars would you like to take out?");
+						String SubtractFunds = scan.nextLine();
+						int SubFunds = Integer.parseInt(SubtractFunds);	
+						
+						if(SubFunds > TotalFunds) {
+							System.out.println("You do not have enough Funds for this transaction.");
+							
+							CustMenu();
+						}else {
+							TotalFunds = TotalFunds - SubFunds;
+							System.out.println("");
+							System.out.println("You have " + TotalFunds + " in your account.");
 			
-			System.out.println("");
-			System.out.println("You have " + TotalFunds + " in your account.");					
+							//subtract funds from "money" column.
 			
-			CustMenu();
+							CustMenu();
+						}
+						
+					case 4:			
+						System.out.println("Enter new password");
+						String newPassword = scan.nextLine();
 			
-		case 3: 
-			System.out.println("How many dollars would you like to take out?");
-			String SubtractFunds = scan.nextLine();
-			int SubFunds = Integer.parseInt(SubtractFunds);	
-			if(SubFunds > TotalFunds) {
-				System.out.println("You do not have enough Funds for this transaction.");
-			}else {
-			TotalFunds = TotalFunds - SubFunds;
-			System.out.println("");
-			System.out.println("You have " + TotalFunds + " in your account.");
+						//Update password FROM TABLE accounts == newPassword;
 			
-			//subtract funds from "money" column.
+					case 5:			
+						System.out.println("Thank you for using Fakedelity, have a nice day!");
+						System.exit(0);
 			
-			CustMenu();
+					default: 
+						System.out.println("Choose a valid number");
+						CustMenu();
+				}	
+			}catch(Exception e) {
+				System.out.println("You must type in a number");
+				CustMenu();
 			}
-		case 4:			
-			System.out.println("Enter new password");
-			String newPassword = scan.nextLine();
-			
-			//Update password FROM TABLE accounts == newPassword;
-			
-		case 5:			
-			System.out.println("Thank you for using Fakedelity, have a nice day!");
-			System.exit(0);
-			
-		default: 
-			System.out.println("Choose a valid number");
-			CustMenu();
-		}	
-		}catch(Exception e) {
-			System.out.println("You must type in a number");
-			CustMenu();
-		}
 	}
 	
 	

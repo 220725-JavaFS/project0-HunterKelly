@@ -28,7 +28,7 @@ import com.revature.repositories.Queries;
 			
 			
 			//*********Check Database for Username duplicates**********
-			String[] AllUserName =Queries.username();		
+			String[] AllUserName =Queries.Allusername();		
 			
 			for(int i=0; i<AllUserName.length; i++) {				
 			

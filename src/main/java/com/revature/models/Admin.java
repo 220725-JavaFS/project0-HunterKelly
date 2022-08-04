@@ -4,23 +4,14 @@ import java.util.Scanner;
 
 import com.revature.repositories.Queries;
 import com.revature.services.CreateAccount;
+import com.revature.services.ShowAllCustomers;
 
 public class Admin extends Account{
 	Scanner scan = new Scanner(System.in);
-	public int permissions = 0;
-	Queries AdminQueries = new Queries();
 	
-
-	public int getPermissions() {
-		return permissions;
-	}
-
-	public void setPermissions(int permissions) {
-		this.permissions = permissions;
-	}
-
+	Queries AdminQueries = new Queries();	
 	
-public void AdMenu() {
+	public void AdMenu() {
 		System.out.println("");
 		System.out.println("Welcome Admin, please choose a number from the following");		
 		System.out.println("1. Print All Customer Accounts");
@@ -31,33 +22,32 @@ public void AdMenu() {
 		String answer = scan.nextLine();
 		switch (answer) {		
 		
-		case "1":
+			case "1":				
+				AdminQueries.PrintCustomerList();				
+				AdMenu();
 			
-			AdminQueries.getCustomerList();				
-			AdMenu();
+			case "2": 
+				CreateAccount Theaccount = new CreateAccount();
+				Theaccount.CreateTheAccount();			
+				AdMenu();
 			
-		case "2": 
-			CreateAccount Theaccount = new CreateAccount();
-			Theaccount.CreateTheAccount();			
+			case "3": 			
+				System.out.println("Type the Customer user name to Delete.");
+				String DeleteThis = scan.nextLine();
+				String FirstName = AdminQueries.getFirstName(DeleteThis);
+				String LastName = AdminQueries.getLastName(DeleteThis);
+				AdminQueries.DeleteCustomer(DeleteThis);
+				System.out.println(FirstName + " " + LastName + "has been removed from the database.");
+				AdMenu();
+				
+			case "4": 
+				System.out.println("Thank you Admin, have a nice day!");
+				System.exit(0);			
 			
-			AdMenu();
-			
-		case "3": 
-			
-			System.out.println("Type the Customer user name to Delete.");
-			String Deleted = scan.nextLine();
-			
-			//SQL method DeleteCustomerList();
-			
-			
-			AdMenu();
-		case "4": 
-			System.out.println("Thank you Admin, have a nice day!");
-			System.exit(0);			
-			
-		default: System.out.println("Choose a valid number");
-		AdMenu();
-		}	
+			default: 
+				System.out.println("Choose a valid number");
+				AdMenu();
+			}	
 		
 		}
 	

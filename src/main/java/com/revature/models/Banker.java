@@ -3,13 +3,13 @@ package com.revature.models;
 import java.util.Scanner;
 
 import com.revature.repositories.Queries;
+import com.revature.services.ShowAllCustomers;
 
-public class Banker extends Account{
-	Scanner scan = new Scanner(System.in);
-	public int permissions = 1;
-		
+public class Banker extends Account{	
+	Scanner scan = new Scanner(System.in);	
+	Queries BankerQueries = new Queries();	
 	
-public void BankerMenu() {
+	public void BankerMenu() {
 		System.out.println("");
 		System.out.println("Welcome Banker, please choose a number from the following");		
 		System.out.println("1. Print out Customer Records");
@@ -21,78 +21,61 @@ public void BankerMenu() {
 		String answer = scan.nextLine();
 		
 		try {
-		switch (answer) {		
+			switch (answer) {		
 		
-		case "1":
-			//sysout query = SELECT PRIMARY KEY(user_name), Name, AccountBalance FROM TABLE Accounts WHERE Permissions == 2;
-				Queries ListAll = new Queries();
-				ListAll.getCustomerList();
-			BankerMenu();
+			case "1":				
+				ShowAllCustomers ShowThem = new ShowAllCustomers();
+				ShowThem.showAllCustomers();			
 			
+			case "2": 						
+				System.out.println("Type the Customer user name to Approve or Deny.");							
+				String CusApp = scan.nextLine();			
+				BankerQueries.OneAtATime(CusApp);			
 			
-		case "2": 
-						
-						
-			System.out.println("Type the Customer user name to Approve or Deny.");							
-			String CusApp = scan.nextLine();
+				System.out.println("Would you like to Approve or Deny " + CusApp + "?");
+				String YesNo = scan.nextLine();
+				YesNo = YesNo.toLowerCase();
 			
-			Queries GetOne = new Queries();
-			GetOne.OneAtATime(CusApp);
-			
-			
-			
-			System.out.println("Would you like to Approve or Deny " + CusApp + "?");
-			String YesNo = scan.nextLine();
-			YesNo = YesNo.toLowerCase();
-			if(YesNo.equals("approve")) {
+				if(YesNo.equals("approve")) {				
+					BankerQueries.ApproveOne(CusApp);							
+					System.out.println("You have successfully approved the application, the customer may now login.");
 				
-				GetOne.ApproveOne(CusApp);
-							
-				System.out.println("You have successfully approved the application, the customer may now login.");
+				}else if(YesNo.equals("deny")) {
+					//Change UserNames Permissions to 4
+					System.out.println("You have successfully denied the application, the customer will be unable to login");
 				
-			}else if(YesNo.equals("deny")) {
-				//Change UserNames Permissions to 4
-				System.out.println("You have successfully denied the application, the customer will be unable to login");
-				
-			}else {
-				System.out.println("You must type approve or deny to approve or deny applications.");
-				System.out.println("Restart the Application and Relogin to try again.");
+				}else {
+					System.out.println("You must type approve or deny to approve or deny applications.");
+					System.out.println("Restart the Application and Relogin to try again.");
+					System.exit(0);
+				}			 
+				BankerMenu(); 	
+			
+			case "3": 
+				System.out.println("Here are the Denied Applications: ");			
+				BankerQueries.DeadAccounts();			
+				BankerMenu();
+			
+			case "4":			
+				Queries approveall = new Queries();
+				approveall.ApproveAll();			
+				System.out.println("All applications with a credit score over 500 have been approved.");
+				BankerMenu();
+			
+			
+			case "5": 
+				System.out.println("Thank you for using Fakedelity, have a nice day!");
 				System.exit(0);
-			}
-			 
-			BankerMenu(); //Restarts Menu
-			
-		case "3": 
-			System.out.println("Here are the Denied Applications: ");
-			Queries DeadAccounts = new Queries();
-			DeadAccounts.DeadAccounts();
-			
-			BankerMenu();
-		case "4":
-			
-			Queries approveall = new Queries();
-			approveall.ApproveAll();			
-			System.out.println("All applications with a credit score over 500 have been approved.");
-			BankerMenu();
-			
-			
-		case "5": 
-			System.out.println("Thank you for using Fakedelity, have a nice day!");
-			System.exit(0);
 						
 			
-		default: System.out.println("Choose a valid number");
-		BankerMenu();
-	}			
+			default: System.out.println("Choose a valid number");
+				BankerMenu();
+			}			
 		
-	}
-		catch(Exception e) {
+		}catch(Exception e) {
 			System.out.println("You must type in a number");
 			BankerMenu();
 			
-		}
-
-		
-		
+		}		
 	}
 }
