@@ -14,7 +14,7 @@ public class Queries {
         
     
    //**********Create an new Account************
-    public void CustomerAdd(String UserName, String Name, String password, boolean CreditScore) {
+    public void CustomerAdd(String UserName, String Password, String Name, String Email, String PhoneNumber, boolean CreditScore) {
     	//INSERT new account into database
     }
     

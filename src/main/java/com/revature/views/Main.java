@@ -28,7 +28,7 @@ public class Main {
 		
 		String NewCus = myObj.nextLine();
 		NewCus = NewCus.toLowerCase();
-		try {
+		
 		switch (NewCus) {
 		case "y": 
 			CreateAccount Theaccount = new CreateAccount();
@@ -38,11 +38,12 @@ public class Main {
 		case "n":
 		Login DotheLogin = new Login();
 		DotheLogin.TheLogin();
-		}	
-		}catch(Exception e) {
-			System.out.println("You must type Y or N. Please restart the application.");
-			System.exit(0);
+		
+		default:
+			System.out.println("You must enter Y or N. Restart the Application and try again.");
 		}
+		
+		
 		
 		
 		//Close Scanner, uncomment later.
