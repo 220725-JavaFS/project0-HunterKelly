@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+//All of the SQL Database Interaction Methods and Connections are stored here
+
 public class Queries {
 	private final String url = "jdbc:postgresql://assoc220725db.cekyyol8wngg.us-east-2.rds.amazonaws.com/postgre";
     private final String user = "postgres";
@@ -25,6 +27,7 @@ public class Queries {
     public void ApproveOne(String UserName) {
     	//Change Usernames Permissions to 2	
     }
+    
     public void OneAtATime(String UserName) {
     	//Query Database for 1 Customer
     }
