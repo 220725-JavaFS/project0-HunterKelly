@@ -18,6 +18,14 @@ public class Queries {
     	//INSERT new account into database
     }
     
+    public static String[] username() {
+    	String[] allUserNames = new String[100];
+    	
+    	//Query All UserNames add to AllUserNames array   	
+    	
+    	return allUserNames;
+    	
+    }
     
   //*********Login***********
     public void Login(String UserName, String password) {

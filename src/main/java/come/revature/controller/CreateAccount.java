@@ -9,7 +9,7 @@ import com.revature.repositories.Queries;
 		
 		public class CreateAccount {
 
-		
+		Queries AddCustomer = new Queries();
 		Scanner myObj = new Scanner(System.in);
 		
 		public void CreateTheAccount() {
@@ -21,7 +21,17 @@ import com.revature.repositories.Queries;
 			String Name = myObj.nextLine();
 			
 			System.out.println("Create a Username");
-			String UserName = myObj.nextLine();			
+			String UserName = myObj.nextLine();	
+			String[] AllUserName =Queries.username();
+			
+			//*********Check Database for Username duplicates**********
+			for(int i=0; i<=AllUserName.length; i++) {				
+			
+				if (UserName.equals(AllUserName[i])) {
+					System.out.println("That username is already taken. Try a different Username.");
+					CreateTheAccount();
+				}
+			}				
 			
 			System.out.println("What is your email address?");
 			String Email = myObj.nextLine();
@@ -39,14 +49,12 @@ import com.revature.repositories.Queries;
 		
 			if(Credit.equals("y")) {
 				Credit = "true";
-				boolean creditscore = Boolean.parseBoolean(Credit);
-				Queries AddCustomer = new Queries();
+				boolean creditscore = Boolean.parseBoolean(Credit);				
 				AddCustomer.CustomerAdd(UserName, Password, Name, Email, PhoneNumber, creditscore);
 				
 			}else if(Credit.equals("n")) {
 				Credit = "false";
-				boolean creditscore = Boolean.parseBoolean(Credit);
-				Queries AddCustomer = new Queries();
+				boolean creditscore = Boolean.parseBoolean(Credit);				
 				AddCustomer.CustomerAdd(UserName, Password, Name, Email, PhoneNumber, creditscore);
 			}	
 			
