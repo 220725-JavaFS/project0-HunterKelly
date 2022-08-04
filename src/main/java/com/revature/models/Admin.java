@@ -2,6 +2,8 @@ package com.revature.models;
 
 import java.util.Scanner;
 
+import com.revature.repositories.Queries;
+
 import come.revature.controller.CreateAccount;
 
 public class Admin extends Account{
@@ -31,7 +33,8 @@ public void AdMenu() {
 		switch (answer) {		
 		
 		case "1":
-			//SQL method getCustomerList();
+			Queries ListAll = new Queries();
+			ListAll.getCustomerList();
 				
 			AdMenu();
 			

@@ -63,8 +63,10 @@ public void BankerMenu() {
 			BankerMenu(); //Restarts Menu
 			
 		case "3": 
+			System.out.println("Here are the Denied Applications: ");
+			Queries DeadAccounts = new Queries();
+			DeadAccounts.DeadAccounts();
 			
-			//Query to change permission in database of customer from 4 to 2
 			BankerMenu();
 		case "4":
 			

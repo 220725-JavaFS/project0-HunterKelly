@@ -5,9 +5,10 @@ import java.util.Scanner;
 import com.revature.models.Admin;
 import com.revature.models.Banker;
 import com.revature.models.Customer;
+import com.revature.repositories.Queries;
 
 public class Login {
-	
+	int i = 1;
 	Scanner myObj = new Scanner(System.in);
 	Scanner myObj2 = new Scanner(System.in);
 	
@@ -18,11 +19,7 @@ public class Login {
 	
 	//I want passwords on its own scanner for now to have better isolation/manipulation.
 	System.out.println("Enter Password");
-	String Password = myObj2.nextLine();	
-	try {
-	//String UserName = set username in database to this variable
-	//String ThePassword = set password in database to this variable
-		
+	String Password = myObj2.nextLine();		
 		
 	if(userName.equals("admin") && Password.equals("password")) {
 		Admin admin1 = new Admin();
@@ -32,19 +29,31 @@ public class Login {
 		Banker banker = new Banker();
 		banker.BankerMenu();
 	}
-	else if(userName.equals(UserName) && Password.equals(ThePassword)){
+	else { try {
+		Queries Login = new Queries();
+		Login.Login(userName, Password);
+		
 		Customer customer = new Customer();
 		customer.CustMenu();
 		
-	}
-	else {
-		System.out.println("Login Failed, please try again.");
-		System.exit(0);
-	}
+		//IF Login Fails 3 times, Program Exits
+		
 	}catch(Exception e) {
-		System.out.println("Invalid Username");
+		System.out.println("Login Failed, please try again.");
+		i= i++;
+		if(i < 4) {
+		TheLogin();
+		}else {
+			System.exit(0);
+		}
 	}
-}
-
+	}
+	
+	//else {
+		//
+		//System.exit(0);
+	//}
 	
 }
+}
+	
