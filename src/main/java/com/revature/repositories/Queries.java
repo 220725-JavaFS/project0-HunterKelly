@@ -9,29 +9,23 @@ public class Queries {
     private final String user = "postgres";
     private final String password = "bleedorange";
 
-    private static Connection getRemoteConnection() {
-        if (System.getenv("RDS_HOSTNAME") != null) {
-          try {
-          Class.forName("org.postgresql.Driver");
-          String dbName = System.getenv("RDS_DB_NAME");
-          String userName = System.getenv("RDS_USERNAME");
-          String password = System.getenv("RDS_PASSWORD");
-          String hostname = System.getenv("RDS_HOSTNAME");
-          String port = System.getenv("RDS_PORT");
-          String jdbcUrl = "jdbc:postgresql://" + hostname + ":" + port + "/" + dbName + "?user=" + userName + "&password=" + password;
-          logger.trace("Getting remote connection with connection string from environment variables.");
-          Connection con = DriverManager.getConnection(jdbcUrl);
-          logger.info("Remote connection successful.");
-          return con;
-        }
-        catch (ClassNotFoundException e) { logger.warn(e.toString());}
-        catch (SQLException e) { logger.warn(e.toString());}
-        }
-        return null;
-      }
+   
     public void getCustomerList() {
-    	
+    	//SQL COMMAND to get all users with permissions 2 and display to console
     }
     
+    public void CustomerAdd(String UserName, String Name, String password, boolean CreditScore) {
+    	//INSERT new account into database
+    }
     
+    public void ApproveAll() {
+    	//Change permissions of all applications with true value in credit column; set to 2
+    }
+    
+    public void ApproveOne(String UserName) {
+    	//Change Usernames Permissions to 2	
+    }
+    public void OneAtATime(String UserName) {
+    	//Query Database for 1 Customer
+    }
 }

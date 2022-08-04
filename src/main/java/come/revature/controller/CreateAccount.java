@@ -1,5 +1,9 @@
 package come.revature.controller;
+import java.sql.SQLException;
 import java.util.Scanner;
+
+import com.revature.models.Customer;
+import com.revature.repositories.Queries;
 
 
 		
@@ -27,23 +31,16 @@ import java.util.Scanner;
 			if(Credit.equals("y")) {
 				Credit = "true";
 				boolean creditscore = Boolean.parseBoolean(Credit);
+				Queries AddCustomer = new Queries();
+				AddCustomer.CustomerAdd(UserName, Name, password, creditscore);
 				
-				try {
-					//INSERT INTO TABLE Account (UserName, Name, CREDIT TRUE, AccountBalance)
-				}catch(Exception e) {
-					System.out.println("That Username is already taken");
-				}
-				
-			} else if(Credit.equals("n")) {
+			}else if(Credit.equals("n")) {
 				Credit = "false";
 				boolean creditscore = Boolean.parseBoolean(Credit);
-				try {
-					//INSERT INTO Account TABLE(firstname, lastname, CREDIT FALSE)
-				}catch(Exception e) {
-					System.out.println("That Username is already taken");
-				}
-			}			
-						
+				Queries AddCustomer = new Queries();
+				AddCustomer.CustomerAdd(UserName, Name, password, creditscore);
+			}	
+			
 			System.out.println("Thank you for the information, a Banker will approve or deny your application asap.");
 			
 		

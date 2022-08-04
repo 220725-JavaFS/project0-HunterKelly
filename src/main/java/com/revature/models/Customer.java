@@ -6,16 +6,18 @@ import com.revature.views.Main;
 
 public class Customer extends Account{
 	Scanner scan = new Scanner(System.in);
-	public int permissions = 2;
+	public int Permissions;
 	public String Name;
+	public float AccountBalance;
+	public boolean Credit;
 	//int TotalFunds = SELECT accountbalance FROM TABLE accounts WHERE user_name == userName;
 	
 	public int getPermissions() {
-		return permissions;
+		return Permissions;
 	}
 
-	public void setPermissions(int permissions) {
-		this.permissions = permissions;
+	public void setPermissions(int Permissions) {
+		this.Permissions = Permissions;
 	}
 
 	public String getName() {
@@ -24,6 +26,24 @@ public class Customer extends Account{
 
 	public void setName(String name) {
 		Name = name;
+	}
+	
+	
+
+	public float getAccountBalance() {
+		return AccountBalance;
+	}
+
+	public void setAccountBalance(float accountBalance) {
+		AccountBalance = accountBalance;
+	}
+
+	public boolean isCredit() {
+		return Credit;
+	}
+
+	public void setCredit(boolean credit) {
+		Credit = credit;
 	}
 
 	public void CustMenu() {

@@ -31,7 +31,7 @@ public void AdMenu() {
 		switch (answer) {		
 		
 		case "1":
-			
+			//SQL method getCustomerList();
 				
 			AdMenu();
 			
@@ -44,12 +44,12 @@ public void AdMenu() {
 			
 			AdMenu();
 		case "3": 
-			//DeleteList = SELECT * FROM TABLE accounts WHERE Permissions == 2;
+			
 			System.out.println("Type the Customer user name to Delete.");
 			String Deleted = scan.nextLine();
 			
+			//SQL method DeleteCustomerList();
 			
-			//DELETE FROM accounts WHERE username.equals(Deleted);
 			
 			AdMenu();
 		case "4": 

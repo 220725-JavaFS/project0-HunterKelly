@@ -20,8 +20,8 @@ public class Login {
 	System.out.println("Enter Password");
 	String Password = myObj2.nextLine();	
 	try {
-	//String UserName = SELECT username from TABLE accounts WHERE username == userName;
-	//String ThePassword = SELECT password FROM TABLE accounts WHERE password == Password;
+	//String UserName = set username in database to this variable
+	//String ThePassword = set password in database to this variable
 		
 		
 	if(userName.equals("admin") && Password.equals("password")) {

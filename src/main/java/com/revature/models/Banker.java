@@ -2,6 +2,8 @@ package com.revature.models;
 
 import java.util.Scanner;
 
+import com.revature.repositories.Queries;
+
 public class Banker extends Account{
 	Scanner scan = new Scanner(System.in);
 	public int permissions = 1;
@@ -13,7 +15,8 @@ public void BankerMenu() {
 		System.out.println("1. Print out Customer Records");
 		System.out.println("2. Approve or Deny Customer Applications");
 		System.out.println("3. View Denied Applications");
-		System.out.println("4. Logout");
+		System.out.println("4. Approve All Good Credit Applications.");
+		System.out.println("5. Logout");
 		System.out.println("");
 		String answer = scan.nextLine();
 		
@@ -22,29 +25,33 @@ public void BankerMenu() {
 		
 		case "1":
 			//sysout query = SELECT PRIMARY KEY(user_name), Name, AccountBalance FROM TABLE Accounts WHERE Permissions == 2;
-									
+				Queries ListAll = new Queries();
+				ListAll.getCustomerList();
 			BankerMenu();
 			
 			
 		case "2": 
 						
-			//sysout query  = SELECT Primary Key(UserName),Name, Credit FROM TABLE Accounts 
-			//				  			WHERE Permissions == 3;
-			
-			System.out.println("Type the Customer user name to Approve or Deny.");
-							
+						
+			System.out.println("Type the Customer user name to Approve or Deny.");							
 			String CusApp = scan.nextLine();
-			//String SelectedCustomer = SELECT Name FROM TABLE Accounts WHERE username.equals(CusApp); 			
-			//System.out.println("Would you like to Approve or Deny " + SelectedCustomer + "? Y or N.");
 			
+			Queries GetOne = new Queries();
+			GetOne.OneAtATime(CusApp);
+			
+			
+			
+			System.out.println("Would you like to Approve or Deny " + CusApp + "?");
 			String YesNo = scan.nextLine();
 			YesNo = YesNo.toLowerCase();
 			if(YesNo.equals("y")) {
-				//UPDATE Permissions = 2 FROM TABLE Accounts WHERE username = SelectedCustomer				
+				
+				GetOne.ApproveOne(CusApp);
+							
 				System.out.println("You have successfully approved the application, the customer may now login.");
 				
 			}else if(YesNo.equals("n")) {
-				//UPDATE Permissions = 4 FROM TABLE Accounts WHERE username = SelectedCustomer
+				//Change UserNames Permissions to 4
 				System.out.println("You have successfully denied the application, the customer will be unable to login");
 				
 			}else {
@@ -56,15 +63,18 @@ public void BankerMenu() {
 			BankerMenu(); //Restarts Menu
 			
 		case "3": 
-			//create array of all customers with permission level 4
-			//String SeeAll = SELECT PRIMARY KEY, FirstName, LastName, Account Balance FROM TABLE Accounts 
-			//				  WHERE Permissions == 2;
 			
-			//print array of arrays
-			//option to change permission in database of customer from 4 to 2
+			//Query to change permission in database of customer from 4 to 2
 			BankerMenu();
-				
-		case "4": 
+		case "4":
+			
+			Queries approveall = new Queries();
+			approveall.ApproveAll();			
+			System.out.println("All applications with a credit score over 500 have been approved.");
+			BankerMenu();
+			
+			
+		case "5": 
 			System.out.println("Thank you for using Fakedelity, have a nice day!");
 			System.exit(0);
 						
