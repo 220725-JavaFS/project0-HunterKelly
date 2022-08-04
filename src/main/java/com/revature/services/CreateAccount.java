@@ -1,4 +1,4 @@
-package come.revature.controller;
+package com.revature.services;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -17,22 +17,27 @@ import com.revature.repositories.Queries;
 			System.out.println("Welcome new customer! Lets start off by creating a new account.");
 			System.out.println("First, we need to collect some basic information\n");
 			
-			System.out.println("What is your full name?");
-			String Name = myObj.nextLine();
+			System.out.println("What is your first name?");
+			String FirstName = myObj.nextLine();
+			
+			System.out.println("What is your last name?");
+			String LastName = myObj.nextLine();
 			
 			System.out.println("Create a Username");
 			String UserName = myObj.nextLine();	
-			String[] AllUserName =Queries.username();
+			
 			
 			//*********Check Database for Username duplicates**********
-			for(int i=0; i<=AllUserName.length; i++) {				
+			String[] AllUserName =Queries.username();		
+			
+			for(int i=0; i<AllUserName.length; i++) {				
 			
 				if (UserName.equals(AllUserName[i])) {
 					System.out.println("That username is already taken. Try a different Username.");
-					CreateTheAccount();
+					System.exit(0);
 				}
 			}				
-			
+			//***********************************************************
 			System.out.println("What is your email address?");
 			String Email = myObj.nextLine();
 			
@@ -50,14 +55,17 @@ import com.revature.repositories.Queries;
 			if(Credit.equals("y")) {
 				Credit = "true";
 				boolean creditscore = Boolean.parseBoolean(Credit);				
-				AddCustomer.CustomerAdd(UserName, Password, Name, Email, PhoneNumber, creditscore);
+				AddCustomer.CustomerAdd(UserName, Password, FirstName, LastName, Email, PhoneNumber, creditscore);
 				
 			}else if(Credit.equals("n")) {
 				Credit = "false";
 				boolean creditscore = Boolean.parseBoolean(Credit);				
-				AddCustomer.CustomerAdd(UserName, Password, Name, Email, PhoneNumber, creditscore);
+				AddCustomer.CustomerAdd(UserName, Password, FirstName, LastName, Email, PhoneNumber, creditscore);
 			}	
-			
+			else {
+				System.out.println("You must enter Y or N to finish application. Please try again.");
+				System.exit(0);
+			}
 			System.out.println("Thank you for the information, a Banker will approve or deny your application asap.");
 			
 		

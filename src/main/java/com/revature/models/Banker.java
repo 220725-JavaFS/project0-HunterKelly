@@ -44,18 +44,18 @@ public void BankerMenu() {
 			System.out.println("Would you like to Approve or Deny " + CusApp + "?");
 			String YesNo = scan.nextLine();
 			YesNo = YesNo.toLowerCase();
-			if(YesNo.equals("y")) {
+			if(YesNo.equals("approve")) {
 				
 				GetOne.ApproveOne(CusApp);
 							
 				System.out.println("You have successfully approved the application, the customer may now login.");
 				
-			}else if(YesNo.equals("n")) {
+			}else if(YesNo.equals("deny")) {
 				//Change UserNames Permissions to 4
 				System.out.println("You have successfully denied the application, the customer will be unable to login");
 				
 			}else {
-				System.out.println("You must enter y or n to approve or deny applications.");
+				System.out.println("You must type approve or deny to approve or deny applications.");
 				System.out.println("Restart the Application and Relogin to try again.");
 				System.exit(0);
 			}

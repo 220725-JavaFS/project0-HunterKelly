@@ -8,7 +8,8 @@ import com.revature.views.Main;
 public class Customer extends Account{
 	Scanner scan = new Scanner(System.in);
 	public int Permissions;
-	public String Name;
+	public String FirstName;
+	public String LastName;
 	public float AccountBalance;
 	public boolean Credit;
 	double TotalFunds = 0.00;
@@ -19,17 +20,23 @@ public class Customer extends Account{
 
 	public void setPermissions(int Permissions) {
 		this.Permissions = Permissions;
+	}	
+
+	public String getFirstName() {
+		return FirstName;
 	}
 
-	public String getName() {
-		return Name;
+	public void setFirstName(String firstName) {
+		FirstName = firstName;
 	}
 
-	public void setName(String name) {
-		Name = name;
+	public String getLastName() {
+		return LastName;
 	}
-	
-	
+
+	public void setLastName(String lastName) {
+		LastName = lastName;
+	}
 
 	public float getAccountBalance() {
 		return AccountBalance;
@@ -49,7 +56,7 @@ public class Customer extends Account{
 
 	public void CustMenu() {
 		System.out.println("");		
-		System.out.println("Welcome " + Name + ", please choose a number from the following");	
+		System.out.println("Welcome " + FirstName + ", please choose a number from the following");	
 		System.out.println("1. Check Account Balance");
 		System.out.println("2. Add funds to account");
 		System.out.println("3. Withdraw funds");

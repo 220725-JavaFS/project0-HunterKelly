@@ -14,14 +14,14 @@ public class Queries {
         
     
    //**********Create an new Account************
-    public void CustomerAdd(String UserName, String Password, String Name, String Email, String PhoneNumber, boolean CreditScore) {
+    public void CustomerAdd(String UserName, String Password, String FirstName, String LastName, String Email, String PhoneNumber, boolean CreditScore) {
     	//INSERT new account into database
     }
     
     public static String[] username() {
     	String[] allUserNames = new String[100];
     	
-    	//Query All UserNames add to AllUserNames array   	
+    	//allUserNames[] = Query All UserNames add to AllUserNames array   	
     	
     	return allUserNames;
     	

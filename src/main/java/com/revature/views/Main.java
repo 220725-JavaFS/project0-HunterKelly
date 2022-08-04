@@ -1,15 +1,11 @@
 package com.revature.views;
 
-
 import java.util.Scanner;
-
-import com.revature.models.Admin;
-import com.revature.models.Banker;
-import com.revature.models.Customer;
 import com.revature.repositories.Queries;
+import com.revature.services.CreateAccount;
+import com.revature.services.Login;
 
-import come.revature.controller.CreateAccount;
-import come.revature.controller.Login;
+
 
 //Welcome! Notes: 
 //Account permissions levels:

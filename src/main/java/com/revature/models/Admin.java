@@ -3,13 +3,12 @@ package com.revature.models;
 import java.util.Scanner;
 
 import com.revature.repositories.Queries;
-
-import come.revature.controller.CreateAccount;
+import com.revature.services.CreateAccount;
 
 public class Admin extends Account{
 	Scanner scan = new Scanner(System.in);
 	public int permissions = 0;
-	
+	Queries AdminQueries = new Queries();
 	
 
 	public int getPermissions() {
@@ -33,19 +32,16 @@ public void AdMenu() {
 		switch (answer) {		
 		
 		case "1":
-			Queries ListAll = new Queries();
-			ListAll.getCustomerList();
-				
+			
+			AdminQueries.getCustomerList();				
 			AdMenu();
 			
 		case "2": 
 			CreateAccount Theaccount = new CreateAccount();
-			Theaccount.CreateTheAccount();
-			
-			
-			
+			Theaccount.CreateTheAccount();			
 			
 			AdMenu();
+			
 		case "3": 
 			
 			System.out.println("Type the Customer user name to Delete.");
