@@ -1,3 +1,5 @@
+Hunter Kellys Notes: This project is designed for presentation. As we learned additional methods in training over the course of this project's production, the program gets more advanced or "better way to do things." I intentionally left the stair stepping code to show how I learned over the course of the project.
+
 # Project 0
 
 **Description**
