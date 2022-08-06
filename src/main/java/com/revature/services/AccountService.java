@@ -1,0 +1,21 @@
+package com.revature.services;
+
+import java.util.List;
+
+import com.revature.models.AccountObject;
+import come.revature.daos.AccountDAO;
+import come.revature.daos.AccountDaoImpl;
+
+public class AccountService {
+	
+	AccountDAO accountDao = new AccountDaoImpl();
+	
+	public AccountObject getSingleAccount(int id) {
+		
+		return accountDao.getAccountById(id);
+		
+	}
+	public List<AccountObject> AccountsAssemble(){
+		return accountDao.getAllAccounts();
+	}
+}

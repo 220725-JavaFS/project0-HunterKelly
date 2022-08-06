@@ -1,10 +1,21 @@
 package come.revature.daos;
 
+import java.util.List;
+
 import com.revature.models.AccountObject;
 
 public interface AccountDAO {
-
-	public AccountObject getAccountByName(String username);
 	
+	
+	public abstract AccountObject getAccountById(int id);
+	
+	
+	List<AccountObject> getAllAccounts();
+	
+	public abstract void insertAccount(AccountObject account);
+
+
+	
+
 	
 }

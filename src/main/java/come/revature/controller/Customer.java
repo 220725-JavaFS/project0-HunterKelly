@@ -1,12 +1,12 @@
-package com.revature.models;
+package come.revature.controller;
 
 import java.util.Scanner;
 
-import com.revature.repositories.Queries;
+import com.revature.models.AccountObject;
+import com.revature.services.AccountService;
+import com.revature.services.Queries;
 
-import come.revature.controller.Main;
-
-public class Customer extends Account{
+public class Customer {
 	Scanner scan = new Scanner(System.in);
 	public int Permissions;
 	public String FirstName;
@@ -15,46 +15,8 @@ public class Customer extends Account{
 	public boolean Credit;
 	double TotalFunds = 0.00;
 	Queries CustomerQueries = new Queries();	
+	private AccountService accountService = new AccountService();
 	
-	public int getPermissions() {
-		return Permissions;
-	}
-
-	public void setPermissions(int Permissions) {
-		this.Permissions = Permissions;
-	}	
-
-	public String getFirstName() {
-		return FirstName;
-	}
-
-	public void setFirstName(String firstName) {
-		FirstName = firstName;
-	}
-
-	public String getLastName() {
-		return LastName;
-	}
-
-	public void setLastName(String lastName) {
-		LastName = lastName;
-	}
-
-	public float getAccountBalance() {
-		return AccountBalance;
-	}
-
-	public void setAccountBalance(float accountBalance) {
-		AccountBalance = accountBalance;
-	}
-
-	public boolean isCredit() {
-		return Credit;
-	}
-
-	public void setCredit(boolean credit) {
-		Credit = credit;
-	}
 
 	public void CustMenu() {
 		System.out.println("");		

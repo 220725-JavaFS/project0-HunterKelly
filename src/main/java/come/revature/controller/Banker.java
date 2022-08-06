@@ -1,12 +1,22 @@
-package com.revature.models;
+package come.revature.controller;
 
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
-import com.revature.repositories.Queries;
+
+import com.revature.models.AccountObject;
+import com.revature.services.AccountService;
+import com.revature.services.Queries;
+
+import come.revature.daos.AccountDAO;
+import come.revature.daos.AccountDaoImpl;
 
 
-public class Banker extends Account{	
+public class Banker{	
+	
 	Scanner scan = new Scanner(System.in);	
-	Queries BankerQueries = new Queries();	
+	Queries BankerQueries = new Queries();
+	private AccountService accountService = new AccountService();
 	
 	public void BankerMenu() {
 		System.out.println("");
@@ -22,14 +32,32 @@ public class Banker extends Account{
 		try {
 			switch (answer) {		
 		
-			case "1":				
-				BankerQueries.PrintCustomerList();	
-				BankerMenu();
+			case "1":		
+				List<AccountObject> list = accountService.AccountsAssemble();
+				System.out.println("Here are all the customer accounts: ");
+				for(AccountObject a:list) {
+					System.out.println(a);
+				}
 			
 			case "2": 						
-				System.out.println("Type the Customer user name to Approve or Deny.");							
-				String CusApp = scan.nextLine();			
-				BankerQueries.OneAtATime(CusApp);			
+				System.out.println("Type the Customer id to Approve or Deny.");							
+				String CusApp = scan.nextLine();					
+				int answerNum = 0;
+				try {
+					 answerNum = Integer.parseInt(CusApp);
+				}catch(NumberFormatException e) {
+					System.out.println("That is not a valid id, please try again");
+					
+				}
+				AccountObject account = accountService.getSingleAccount(answerNum);
+				System.out.println("Here is your customer: \n" + account );
+				
+				
+				//AccountDAO aDao = new AccountDaoImpl();
+		    	//AccountObject a = aDao.getAccountById(CusApp);
+		    	//System.out.println(a);
+				
+				//accountService.getSingleAccount(CusApp);			
 			
 				System.out.println("Would you like to Approve or Deny " + CusApp + "?");
 				String YesNo = scan.nextLine();

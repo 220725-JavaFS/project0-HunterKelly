@@ -1,9 +1,10 @@
 package come.revature.controller;
 
 import java.util.Scanner;
-import com.revature.repositories.Queries;
+
 import com.revature.services.CreateAccount;
 import com.revature.services.Login;
+import com.revature.services.Queries;
 
 
 

@@ -1,23 +1,17 @@
-package com.revature.repositories;
+package com.revature.services;
 
+import com.revature.models.AccountObject;
+
+import come.revature.daos.AccountDAO;
+import come.revature.daos.AccountDaoImpl;
 
 //*******All of the SQL Database Interaction Methods and Connections are stored here******
 
 public class Queries {	
     double CurrentBalance = 0.00;
-        
-    
-   public static String getFirstName(String UserName){
-	   String FirstName = "";
-	   // FirstName = Firstname from database where username = UserName
-	   return FirstName;
-   }
-    
-   public static String getLastName(String UserName){
-	   String LastName = "";
-	   // FirstName = Firstname from database where username = UserName
-	   return LastName;
-   }
+    private AccountDAO accountDao = new AccountDaoImpl();  
+       	          
+   
     
     //*********Get AllUsernames into Array*******
     public static String[] Allusername() {
@@ -65,9 +59,14 @@ public class Queries {
     	//Change specific Username's Permissions to 2	
     }
     
-    public void OneAtATime(String UserName) {
-    	//Query Database for 1 Customer and return all values
-    }
+//    public AccountObject OneAtATime(String UserName) {
+//    	AccountDAO aDao = new AccountDaoImpl();
+//    	AccountObject a = aDao.getAccountById(UserName);
+//    	System.out.println(a);
+    	
+    	
+    	//return accountDao.getAccountByName(UserName);
+    //}
     
     public String[][] DeadAccounts() {
     	String[][] AllCustomers = new String[100][5];

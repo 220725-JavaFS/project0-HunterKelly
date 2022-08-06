@@ -1,14 +1,19 @@
-package com.revature.models;
+package come.revature.controller;
 
 import java.util.Scanner;
-import com.revature.repositories.Queries;
+
+import com.revature.models.AccountObject;
+import com.revature.services.AccountService;
 import com.revature.services.CreateAccount;
+import com.revature.services.Queries;
 
 
-public class Admin extends Account{
-	Scanner scan = new Scanner(System.in);
+public class Admin {
 	
+	Scanner scan = new Scanner(System.in);	
 	Queries AdminQueries = new Queries();	
+	private AccountService accountService = new AccountService();
+	
 	
 	public void AdMenu() {
 		System.out.println("");
@@ -30,14 +35,14 @@ public class Admin extends Account{
 				Theaccount.CreateTheAccount();			
 				AdMenu();
 			
-			case "3": 			
-				System.out.println("Type the Customer user name to Delete.");
-				String DeleteThis = scan.nextLine();
-				String FirstName = Queries.getFirstName(DeleteThis);
-				String LastName = Queries.getLastName(DeleteThis);
-				AdminQueries.DeleteCustomer(DeleteThis);
-				System.out.println(FirstName + " " + LastName + "has been removed from the database.");
-				AdMenu();
+//			case "3": 			
+//				System.out.println("Type the Customer user name to Delete.");
+//				String DeleteThis = scan.nextLine();
+//				AccountObject FirstName = AdminQueries.OneAtATime(DeleteThis);
+//				
+//				AdminQueries.DeleteCustomer(DeleteThis);
+//				System.out.println(FirstName + " " + "has been removed from the database.");
+//				AdMenu();
 				
 			case "4": 
 				System.out.println("Thank you Admin, have a nice day!");

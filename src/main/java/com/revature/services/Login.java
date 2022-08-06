@@ -2,10 +2,9 @@ package com.revature.services;
 
 import java.util.Scanner;
 
-import com.revature.models.Admin;
-import com.revature.models.Banker;
-import com.revature.models.Customer;
-import com.revature.repositories.Queries;
+import come.revature.controller.Admin;
+import come.revature.controller.Banker;
+import come.revature.controller.Customer;
 
 public class Login {
 	int i = 1;
@@ -17,7 +16,8 @@ public class Login {
 	public void TheLogin() {
 		System.out.println("Please login to continue");		
 		System.out.println("Enter Username");
-		String userName = myObj.nextLine(); 		
+		String userName = myObj.nextLine(); 
+		
 	
 		//I want passwords on its own scanner for now to have better isolation/manipulation.
 		System.out.println("Enter Password");
@@ -42,16 +42,11 @@ public class Login {
 				customer.CustMenu();
 				}
 			}
-		}//IF Login Fails 3 times, Program Exits		
+		}		
 		else {
 				System.out.println("Login Failed, please try again.");
-				i= i++;
-				if(i < 4) {
-					TheLogin();
-				}else {
-					System.out.println("You have failed login too many times.");
-					System.exit(0);
-				}
+				System.exit(0);
+				
 			}
 		}	
 	}

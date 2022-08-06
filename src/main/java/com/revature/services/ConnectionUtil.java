@@ -12,7 +12,7 @@ public class ConnectionUtil {
 	    
 	public static Connection getConnection() throws SQLException{
 	    	
-	    if(connection!=null) {
+	    if(connection!=null && !connection.isClosed()) {
 	    	return connection;
 	    }else{
 	    		
@@ -36,12 +36,12 @@ public class ConnectionUtil {
 	    	
 	 }
 	//***************Connection Test**************
-	public static void main(String[] args) {
-		try {
-			getConnection();
-			System.out.println("Connection Successfull!");
-		} catch (SQLException e) {			
-			e.printStackTrace();
-		}
-	}
+	//public static void main(String[] args) {
+		//try {
+			//getConnection();
+			//System.out.println("Connection Successful!");
+		//} catch (SQLException e) {			
+		//	e.printStackTrace();
+		//}
+	//}
 }
