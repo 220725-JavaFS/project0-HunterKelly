@@ -1,3 +1,5 @@
+Hunter Kellys Notes: This project is designed for presentation. As we learned additional methods in training over the course of this project's production, the program gets more advanced or "better way to do things." One of my favorite parts of the design was to get these lower and higher level of code to interact while maintaining the integrity of the application. I intentionally left a couple of "not the best way to do this" methods to show how I learned over the course of the project.
+
 # Project 0
 
 **Description**
