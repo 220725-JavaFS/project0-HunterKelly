@@ -1,7 +1,5 @@
 package com.revature.services;
 
-import com.revature.models.AccountObject;
-
 import come.revature.daos.AccountDAO;
 import come.revature.daos.AccountDaoImpl;
 

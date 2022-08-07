@@ -73,11 +73,7 @@ import come.revature.daos.AccountDaoImpl;
 				
 			System.out.println("Thank you for the information, a Banker will approve or deny your application asap.");			
 			
-			
-			System.out.println("After first one");
-			accountService.recruitCustomer(accountObject);
-			System.out.println("Created Account, you may now login");
-			
+			accountService.recruitCustomer(accountObject);			
 			
 		
 		}

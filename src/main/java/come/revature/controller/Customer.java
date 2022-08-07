@@ -4,7 +4,11 @@ import java.util.Scanner;
 
 import com.revature.models.AccountObject;
 import com.revature.services.AccountService;
+import com.revature.services.Login;
 import com.revature.services.Queries;
+
+import come.revature.daos.AccountDAO;
+import come.revature.daos.AccountDaoImpl;
 
 public class Customer {
 	Scanner scan = new Scanner(System.in);
@@ -14,13 +18,15 @@ public class Customer {
 	public float AccountBalance;
 	public boolean Credit;
 	double TotalFunds = 0.00;
-	Queries CustomerQueries = new Queries();	
-	private AccountService accountService = new AccountService();
+			
 	
 
-	public void CustMenu() {
+	public void CustMenu(int id) {
+		int CusID = id;
+		AccountDAO aDao = new AccountDaoImpl();
+		AccountObject account = aDao.getAccountById(id);
 		System.out.println("");		
-		System.out.println("Welcome " + FirstName + ", please choose a number from the following");	
+		System.out.println("Welcome " + account.getFirstname() + ", please choose a number from the following");	
 		System.out.println("1. Check Account Balance");
 		System.out.println("2. Add funds to account");
 		System.out.println("3. Withdraw funds");
@@ -32,54 +38,68 @@ public class Customer {
 		
 			try {
 				switch (answerNum) {		
-					case 1:									
-						CustomerQueries.CheckBalance();									
-						CustMenu();
+					case 1:	
+						double accountbalance = account.getAccountbalance();
 						
-					case 2:										
-			
+						
+						System.out.println("You have $" + accountbalance + " in your account.");									
+						break;
+						
+					case 2:			
 						System.out.println("How much money would you like to add?");
 						String AddFunds = scan.nextLine();
-						double Funds = Integer.parseInt(AddFunds);											
-						CustomerQueries.AddFunds(Funds);										
-						CustMenu();
+						double Funds = Double.parseDouble(AddFunds);	
+						double accountbalance2 = account.getAccountbalance();
+						accountbalance2 = accountbalance2 + Funds;
+						aDao.updateAccountBalance(accountbalance2, CusID);
+						break;										
+						
 			
 					case 3: 
 						System.out.println("How many dollars would you like to take out?");
 						String SubtractFunds = scan.nextLine();
-						int SubFunds = Integer.parseInt(SubtractFunds);	
-						
-						if(SubFunds > TotalFunds) {
-							System.out.println("You do not have enough Funds for this transaction.");
+						double Funds2 = Double.parseDouble(SubtractFunds);	
+						double accountbalance3 = account.getAccountbalance();
+						;						
 							
-							CustMenu();
+						
+						if(Funds2 > accountbalance3) {
+							System.out.println("You do not have enough Funds for this transaction.");							
+							
 						}else {
-							TotalFunds = TotalFunds - SubFunds;
-							System.out.println("");
-							System.out.println("You have " + TotalFunds + " in your account.");
-			
-							//subtract funds from "money" column.
-			
-							CustMenu();
+							accountbalance3 = accountbalance3 - Funds2;
+							aDao.updateAccountBalance(accountbalance3, CusID);
+							AccountObject account2 = aDao.getAccountById(id);
+							System.out.println("*************************************");
+							System.out.println("*                                   *");
+							System.out.println("*  You have $" + account2.getAccountbalance() + " in your account. *");
+							System.out.println("*                                   *");
+							System.out.println("*                                   *");
+							System.out.println("*************************************");
+							//subtract funds from "money" column.								
 						}
+						break;
 						
 					case 4:			
 						System.out.println("Enter new password");
 						String newPassword = scan.nextLine();
 			
 						//Update password FROM TABLE accounts == newPassword;
-			
+						break;
+						
 					case 5:			
 						System.out.println("Thank you for using Fakedelity, have a nice day!");
-						System.exit(0);
+						Login login = new Login();
+						login.TheLogin();
 			
 					default: 
 						System.out.println("Choose a valid number");
-						CustMenu();
+						break;
 				}	
+				CustMenu(CusID);
 			}catch(Exception e) {
 				System.out.println("You must type in a number");
-				CustMenu();
+				CustMenu(CusID);
 			}
 	}
 	

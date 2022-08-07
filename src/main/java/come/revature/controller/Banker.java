@@ -1,13 +1,11 @@
 package come.revature.controller;
 
-import java.sql.SQLException;
+
 import java.util.List;
 import java.util.Scanner;
 
 import com.revature.models.AccountObject;
 import com.revature.services.AccountService;
-import com.revature.services.Queries;
-
 import come.revature.daos.AccountDAO;
 import come.revature.daos.AccountDaoImpl;
 
@@ -36,7 +34,7 @@ public class Banker{
 				for(AccountObject a:list) {
 					System.out.println(a);
 				}
-				BankerMenu();
+				break;
 				
 			case "2": 						
 				System.out.println("Type the Customer id to view information.");							
@@ -49,8 +47,9 @@ public class Banker{
 				}
 				AccountDAO aDao = new AccountDaoImpl();
 				AccountObject account = aDao.getAccountById(answerNum);
-				System.out.println("Here is your customer: \n" + account );				
-				BankerMenu(); 	
+				System.out.println("Here is your customer: \n" + account );	
+				break;
+				 	
 			
 			case "3": 
 				
@@ -66,37 +65,51 @@ public class Banker{
 				AccountObject account2 = aDao2.getAccountById(answerNum2);
 				System.out.println("Here is your customer: \n" + account2 );
 				
+				String accountType = "";
+				String newAccountType = "";
+				accountType = account2.getPersonalInfo().getAccountType();
+				
+				
 				System.out.println("What type of Account will the Customer change into?");
 				System.out.println("1. Checkings");
 				System.out.println("2. Savings");
 				System.out.println("3. Dogecoin");
 				String YesNo = scan.nextLine();
 							
-				if(YesNo.equals("1")) {			
-									//sql prepared statement to change into checking 			
+				if(YesNo.equals("1")) {		
+					newAccountType = "'checkings'";
+					account2.getPersonalInfo().setAccountType(newAccountType);			
 					System.out.println("You have successfully changed the Customers Account into a Checkings Account.");
 				
-				}else if(YesNo.equals("2")) {					
+				}else if(YesNo.equals("2")) {
+					newAccountType = "'savings'";
+					account2.getPersonalInfo().setAccountType(newAccountType);
 					System.out.println("You have successfully changed the Customers Account into a Savings Account.");
 				
-				}else if(YesNo.equals("3")) {					
+				}else if(YesNo.equals("3")) {	
+					newAccountType = "'dogecoin'";
+					account2.getPersonalInfo().setAccountType(newAccountType);
 					System.out.println("You have successfully changed the Customers Account into a Dogecoin Account.");					
 					
 				}else {
+					
 					System.out.println("You must type a number to change Account types..");
 					System.out.println("Restart the Application and Relogin to try again.");
 					System.exit(0);
-				}			 	
-							
-				BankerMenu();					
+				}		
+				
+				aDao2.updateAccountType(newAccountType, answerNum2);
+				break;					
 										
 			case "4": 
 				System.out.println("Thank you for using Fakedelity, have a nice day!");
 				System.exit(0);						
 			
-			default: System.out.println("Choose a valid number");
-				BankerMenu();
+			default: System.out.println("Choose a valid number");			
+			BankerMenu();	
+			
 			}			
+		BankerMenu();
 		
 		}catch(Exception e) {
 			System.out.println("You must type in a number");
