@@ -5,14 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.revature.models.AccountObject;
 import com.revature.models.PersonalInfo;
 import com.revature.services.ConnectionUtil;
-
-
 public class PersonalInfoDaoImpl implements PersonalInfoDAO {
-	public PersonalInfo getEmailByName(String name) {
+	
+	@Override
+	public PersonalInfo getAccountTypeByName(String name) {
 		try(Connection conn = ConnectionUtil.getConnection()){
-			String sql = "SELECT * FROM personal_info WHERE email = ?;";
+			String sql = "SELECT * FROM accounts WHERE account_type = ?;";
 			
 			PreparedStatement statement = conn.prepareStatement(sql);
 			
@@ -22,12 +23,11 @@ public class PersonalInfoDaoImpl implements PersonalInfoDAO {
 			
 			if(result.next()) {
 				PersonalInfo personalinfo = new PersonalInfo();
-				personalinfo.setEmail(result.getString("email"));
-				personalinfo.setFirstName(result.getString("first_name"));
-				personalinfo.setLastName(result.getString("last_name"));
-				personalinfo.setPhoneNumber(result.getString("phone_number"));
-				personalinfo.setAccountBalance(result.getDouble("account_balance"));
-				personalinfo.setCredit(result.getBoolean("credit"));
+				personalinfo.setAccountType(result.getString("account_type"));
+				personalinfo.setCheckings(result.getDouble("checkings"));
+				personalinfo.setSavings(result.getDouble("savings"));
+				personalinfo.setDogecoin(result.getDouble("dogecoin"));				
+				return personalinfo;
 			}							
 						
 		}catch (SQLException e) {
@@ -35,4 +35,7 @@ public class PersonalInfoDaoImpl implements PersonalInfoDAO {
 		}
 		return null;
 	}
+
+					
+	
 }

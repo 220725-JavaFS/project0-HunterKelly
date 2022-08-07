@@ -8,8 +8,7 @@ import come.revature.controller.Customer;
 
 public class Login {
 	int i = 1;
-	boolean CheckUserName = false;
-	Queries Login = new Queries();
+	boolean CheckUserName = false;	
 	Scanner myObj = new Scanner(System.in);
 	Scanner myObj2 = new Scanner(System.in);
 	
@@ -31,23 +30,15 @@ public class Login {
 		Banker banker = new Banker();
 		banker.BankerMenu();
 		}
-		else if(!CheckUserName) {				
+		else if( userName != "admin") {				
+		System.out.println("CustomerLogin enabled");
+			//checks username against database then creates Customer Menu if success;		
 		
-			String[] LoginCheck = Queries.Allusername();		
-		
-			for(int i=0; i<LoginCheck.length; i++) {				
-		
-				if (userName.equals(LoginCheck[i])) {				
-				Customer customer = new Customer();
-				customer.CustMenu();
-				}
-			}
+		 //if not success then login failed system exit
+		//System.out.println("Login Failed, please try again.");
+		//System.exit(0);
 		}		
-		else {
-				System.out.println("Login Failed, please try again.");
-				System.exit(0);
-				
-			}
+		
 		}	
 	}
 	

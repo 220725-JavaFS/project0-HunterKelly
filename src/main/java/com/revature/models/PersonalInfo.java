@@ -1,81 +1,47 @@
 package com.revature.models;
 
-
+import java.util.Objects;
 
 public class PersonalInfo {
-	private String Email;
-	private String FirstName;
-	private String LastName;	
-	private String PhoneNumber;
-	private double AccountBalance;
-	private Boolean Credit;
-	
-	
-	public PersonalInfo(String email, String firstName, String lastName, String phoneNumber, double accountBalance,
-			Boolean credit) {
+	private String accountType;
+	private double checkings;
+	private double savings;
+	private double dogecoin;
+	public PersonalInfo(String accountType, double checkings, double savings, double dogecoin) {
 		super();
-		this.Email = email;
-		this.FirstName = firstName;
-		this.LastName = lastName;
-		this.PhoneNumber = phoneNumber;
-		this.AccountBalance = accountBalance;
-		this.Credit = credit;
+		this.accountType = accountType;
+		this.checkings = checkings;
+		this.savings = savings;
+		this.dogecoin = dogecoin;
 	}
 	public PersonalInfo() { }
-	
-	public String getEmail() {
-		return Email;
+	public String getAccountType() {
+		return accountType;
 	}
-	public void setEmail(String email) {
-		this.Email = email;
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
 	}
-	public String getFirstName() {
-		return FirstName;
+	public double getCheckings() {
+		return checkings;
 	}
-	public void setFirstName(String firstName) {
-		this.FirstName = firstName;
+	public void setCheckings(double checkings) {
+		this.checkings = checkings;
 	}
-	public String getLastName() {
-		return LastName;
+	public double getSavings() {
+		return savings;
 	}
-	public void setLastName(String lastName) {
-		this.LastName = lastName;
+	public void setSavings(double savings) {
+		this.savings = savings;
 	}
-	public String getPhoneNumber() {
-		return PhoneNumber;
+	public double getDogecoin() {
+		return dogecoin;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.PhoneNumber = phoneNumber;
-	}
-	public double getAccountBalance() {
-		return AccountBalance;
-	}
-	public void setAccountBalance(double accountBalance) {
-		this.AccountBalance = accountBalance;
-	}
-	public Boolean getCredit() {
-		return Credit;
-	}
-	public void setCredit(Boolean credit) {
-		this.Credit = credit;
+	public void setDogecoin(double dogecoin) {
+		this.dogecoin = dogecoin;
 	}
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;		
-		int a = (int) Math.round(AccountBalance);
-		result = prime * result + a; //AccountBalance but as an int for hashcode
-		result = prime * result + ((Email == null) ? 0 : Email.hashCode());
-		result = prime * result + ((FirstName == null) ? 0 : Email.hashCode());
-		result = prime * result + ((LastName == null) ? 0 : Email.hashCode());
-		result = prime * result + ((PhoneNumber == null) ? 0 : Email.hashCode());
-		result = prime * result + ((Credit == null) ? 0 : Email.hashCode());
-		return result;
-		
-		
-		
-		
-		
+		return Objects.hash(accountType, checkings, dogecoin, savings);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -86,44 +52,20 @@ public class PersonalInfo {
 		if (getClass() != obj.getClass())
 			return false;
 		PersonalInfo other = (PersonalInfo) obj;
-		if (Email == null) {
-			if (other.Email != null)
-				return false;
-		} else if (!Email.equals(other.Email))
-			return false;
-		if (FirstName == null) {
-			if (other.FirstName != null)
-				return false;
-		} else if (!FirstName.equals(other.FirstName))
-			return false;
-		if (LastName == null) {
-			if (other.LastName != null)
-				return false;
-		} else if (!LastName.equals(other.LastName))
-			return false;
-		if (PhoneNumber == null) {
-			if (other.PhoneNumber != null)
-				return false;
-		} else if (!PhoneNumber.equals(other.PhoneNumber))
-			return false;
-		if (AccountBalance != other.AccountBalance)
-			return false;
-		return true;
+		return Objects.equals(accountType, other.accountType)
+				&& Double.doubleToLongBits(checkings) == Double.doubleToLongBits(other.checkings)
+				&& Double.doubleToLongBits(dogecoin) == Double.doubleToLongBits(other.dogecoin)
+				&& Double.doubleToLongBits(savings) == Double.doubleToLongBits(other.savings);
 	}
-		
-		
-		
-		
-		
 	@Override
 	public String toString() {
-		return "PersonalInfo [Email=" + Email + ", FirstName=" + FirstName + ", LastName=" + LastName + ", PhoneNumber="
-				+ PhoneNumber + ", AccountBalance=" + AccountBalance + ", Credit=" + Credit + "]";
+		return "PersonalInfo [accountType=" + accountType + ", checkings=" + checkings + ", savings=" + savings
+				+ ", dogecoin=" + dogecoin + "]";
 	}
 	
 	
-	
-	
-	
-	
+
+
+
+
 }

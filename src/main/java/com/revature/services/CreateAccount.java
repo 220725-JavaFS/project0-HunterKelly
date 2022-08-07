@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.revature.models.AccountObject;
+import com.revature.models.PersonalInfo;
 
 import come.revature.controller.Customer;
 import come.revature.daos.AccountDAO;
@@ -14,69 +15,62 @@ import come.revature.daos.AccountDaoImpl;
 		public class CreateAccount {
 		
 		Scanner myObj = new Scanner(System.in);
-//		CustomerInfo customerInfo = new CustomerInfo();
-//		MoneyInfo moneyInfo = new MoneyInfo();
-		AccountObject accountObject = new AccountObject();
+		private AccountService accountService = new AccountService();		
 		public void CreateTheAccount() {
 			
 			System.out.println("Welcome new customer! Lets start off by creating a new account.");
 			System.out.println("First, we need to collect some basic information.\n");
+			AccountObject accountObject = new AccountObject();
 			
-			System.out.println("What is your first name?");			
-			//customerInfo.setFirstName(myObj.nextLine());
 			
-			System.out.println("What is your last name?");
-			//customerInfo.setLastName(myObj.nextLine());
 			
 			System.out.println("Create a Username");
-			String NewUserName = myObj.nextLine();
-			//customerInfo.setUserName(NewUserName);		
-			//moneyInfo.setUserName(NewUserName);	
-			accountObject.setUsername(NewUserName);
-			
-			//*********Check Database for Username duplicates**********
-			//AccountDAO aDao = new AccountDaoImpl();
-			//List<AccountObject> list = aDao.getAllAccounts();
-			//AccountObject AllUserName = aDao.getAccountByName("user_name");
-					
-			//Loop to check list for duplicates
-//			for(int i=0; i<AllUserName.length; i++) {				
-//			
-//				if (UserName.equals(AllUserName[i])) {
-//					System.out.println("That username is already taken. Try a different Username.");
-//					System.exit(0);
-//				}
-//			}				
-			//***********************************************************
-			System.out.println("What is your email address?");
-			String Email = myObj.nextLine();
-			
-			System.out.println("What is your phone number?");
-			String PhoneNumber = myObj.nextLine();
+			accountObject.setUsername(myObj.nextLine());
 			
 			System.out.println("Create a password");
-			String Password = myObj.nextLine();
+			accountObject.setPassword(myObj.nextLine());			
 			
-			System.out.println("Do you have a credit score of over 500? Y or N?");
-			String Credit = myObj.nextLine();
-			Credit = Credit.toLowerCase();			
+			accountObject.setPersonalInfo(new PersonalInfo());
+			System.out.println("What is your first name?");	
+			accountObject.setFirstname(myObj.nextLine());
+			//accountObject.getPersonalInfo().setFirstName(answer);
+			//personalInfo.setFirstName(answer);
+			
+			System.out.println("What is your last name?");			 			
+			accountObject.setLastname(myObj.nextLine());
+			
+			System.out.println("How much would you like to deposit into your new account?");
+			accountObject.setAccountbalance(Double.parseDouble(myObj.nextLine()));
 					
-		
-			if(Credit.equals("y")) {
-				Credit = "true";
-				boolean creditscore = Boolean.parseBoolean(Credit);					
-				
-			}else if(Credit.equals("n")) {
-				Credit = "false";
-				boolean creditscore = Boolean.parseBoolean(Credit);					
-			}	
-			else {
-				System.out.println("You must enter Y or N to finish application. Please try again.");
-				System.exit(0);
-			}
+					
 			
-			//CALL INSERT CONNECTION METHOD
+			System.out.println("What kind of account? ");
+			System.out.println("1. Checking: 1.5% growth");
+			System.out.println("2. Savings: 2% growth");
+			System.out.println("3. Dogecoin Investment Account: 5% growth");
+			
+			String answer = myObj.nextLine();
+			int answerNum = Integer.parseInt(answer);
+					
+				switch (answerNum) {
+				case 1:
+					
+				
+				}
+				
+			System.out.println("What is your email address?");			
+			answer = myObj.nextLine();			
+			//accountObject.getPersonalInfo().setEmail(answer);
+			//personalInfo.setEmail(answer);
+				
 			System.out.println("Thank you for the information, a Banker will approve or deny your application asap.");
+						
+			
+			
+			System.out.println("After first one");
+			accountService.recruitCustomer(accountObject);
+			System.out.println("Created Account, you may now login");
+			
 			
 		
 		}
