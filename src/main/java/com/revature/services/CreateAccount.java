@@ -44,7 +44,7 @@ import come.revature.daos.AccountDaoImpl;
 					
 					
 			
-			System.out.println("What kind of account? ");
+			System.out.println("What kind of account would you like to open? ");
 			System.out.println("1. Checking: 1.5% growth");
 			System.out.println("2. Savings: 2% growth");
 			System.out.println("3. Dogecoin Investment Account: 5% growth");
@@ -54,17 +54,24 @@ import come.revature.daos.AccountDaoImpl;
 					
 				switch (answerNum) {
 				case 1:
-					
-				
+					answer = "checkings";
+					accountObject.setPersonalInfo(new PersonalInfo());
+					accountObject.getPersonalInfo().setAccountType(answer);
+					break;
+				case 2:
+					answer = "savings";
+					accountObject.setPersonalInfo(new PersonalInfo());
+					accountObject.getPersonalInfo().setAccountType(answer);
+					break;
+				case 3: 
+					answer = "dogecoin";
+					accountObject.setPersonalInfo(new PersonalInfo());
+					accountObject.getPersonalInfo().setAccountType(answer);
+					break;
 				}
+										
 				
-			System.out.println("What is your email address?");			
-			answer = myObj.nextLine();			
-			//accountObject.getPersonalInfo().setEmail(answer);
-			//personalInfo.setEmail(answer);
-				
-			System.out.println("Thank you for the information, a Banker will approve or deny your application asap.");
-						
+			System.out.println("Thank you for the information, a Banker will approve or deny your application asap.");			
 			
 			
 			System.out.println("After first one");

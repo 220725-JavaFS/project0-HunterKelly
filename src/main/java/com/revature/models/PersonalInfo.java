@@ -15,6 +15,7 @@ public class PersonalInfo {
 		this.dogecoin = dogecoin;
 	}
 	public PersonalInfo() { }
+	
 	public String getAccountType() {
 		return accountType;
 	}

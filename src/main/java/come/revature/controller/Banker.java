@@ -22,7 +22,7 @@ public class Banker{
 		System.out.println("Welcome Banker, please choose a number from the following");		
 		System.out.println("1. Print out all Customer Records");
 		System.out.println("2. Search Customer Records");
-		System.out.println("3. Approve Poor Credit Customers");		
+		System.out.println("3. Change Customer Account Type");		
 		System.out.println("4. Logout");
 		System.out.println("");
 		String answer = scan.nextLine();
@@ -54,7 +54,7 @@ public class Banker{
 			
 			case "3": 
 				
-				System.out.println("Type the Customer id to view information.");							
+				System.out.println("Type the Customer id of the Customer you wish to change.");							
 				String CusApp2 = scan.nextLine();					
 				int answerNum2 = 0;
 				try {
@@ -66,19 +66,24 @@ public class Banker{
 				AccountObject account2 = aDao2.getAccountById(answerNum2);
 				System.out.println("Here is your customer: \n" + account2 );
 				
-				System.out.println("Would you like to Approve or Deny this customer?");
+				System.out.println("What type of Account will the Customer change into?");
+				System.out.println("1. Checkings");
+				System.out.println("2. Savings");
+				System.out.println("3. Dogecoin");
 				String YesNo = scan.nextLine();
-				YesNo = YesNo.toLowerCase();			
-				if(YesNo.equals("approve")) {			
-												
-					System.out.println("You have successfully approved the application, the customer may now login.");
+							
+				if(YesNo.equals("1")) {			
+									//sql prepared statement to change into checking 			
+					System.out.println("You have successfully changed the Customers Account into a Checkings Account.");
 				
-				}else if(YesNo.equals("deny")) {
-					//Change UserNames Permissions to 4
-					System.out.println("You have successfully denied the application, the customer will be unable to login");
+				}else if(YesNo.equals("2")) {					
+					System.out.println("You have successfully changed the Customers Account into a Savings Account.");
 				
+				}else if(YesNo.equals("3")) {					
+					System.out.println("You have successfully changed the Customers Account into a Dogecoin Account.");					
+					
 				}else {
-					System.out.println("You must type approve or deny to approve or deny applications.");
+					System.out.println("You must type a number to change Account types..");
 					System.out.println("Restart the Application and Relogin to try again.");
 					System.exit(0);
 				}			 	
