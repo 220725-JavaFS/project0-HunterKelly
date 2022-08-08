@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import com.revature.models.AccountObject;
 import com.revature.services.AccountService;
-import com.revature.services.CreateAccount;
 import com.revature.services.Queries;
 
 import come.revature.daos.AccountDAO;
@@ -41,7 +40,7 @@ public class Admin {
 				
 				
 			
-			case "2": 
+			case "2": 				
 				CreateAccount Theaccount = new CreateAccount();
 				Theaccount.CreateTheAccount();			
 				break;
@@ -63,7 +62,8 @@ public class Admin {
 				
 			case "5": 
 				System.out.println("Thank you Admin, have a nice day!");
-				System.exit(0);			
+				Login login = new Login();
+				login.TheLogin();			
 			
 			default: 
 				System.out.println("Choose a valid number");

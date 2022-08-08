@@ -33,7 +33,9 @@ public class AccountDaoImpl implements AccountDAO{
 						result.getString("the_password"),
 						result.getString("first_name"),
 						result.getString("last_name"),
-						result.getDouble("account_balance"),						
+						result.getDouble("account_balance"),
+						result.getString("email"),
+						result.getString("phone_number"),
 						null							
 						);
 				String personalUser = result.getString("account_type");					
@@ -73,7 +75,9 @@ public class AccountDaoImpl implements AccountDAO{
 							result.getString("the_password"),
 							result.getString("first_name"),
 							result.getString("last_name"),
-							result.getDouble("account_balance"),							
+							result.getDouble("account_balance"),
+							result.getString("email"),
+							result.getString("phone_number"),
 							null							
 							);
 					String personalUser = result.getString("account_type");					
@@ -168,7 +172,9 @@ public class AccountDaoImpl implements AccountDAO{
 						result.getString("the_password"),
 						result.getString("first_name"),
 						result.getString("last_name"),
-						result.getDouble("account_balance"),						
+						result.getDouble("account_balance"),
+						result.getString("email"),
+						result.getString("phone_number"),
 						null							
 						);
 				String personalUser = result.getString("account_type");					
@@ -204,7 +210,7 @@ public class AccountDaoImpl implements AccountDAO{
 		
 	}
 
-	@Override
+	
 	public void updatePassword(String password,int id) {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			String sql = "UPDATE customer_accounts SET the_password = " + password + " WHERE customer_id = " + id + ";";

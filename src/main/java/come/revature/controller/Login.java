@@ -1,12 +1,9 @@
-package com.revature.services;
+package come.revature.controller;
 
 import java.util.Scanner;
 
 import com.revature.models.AccountObject;
 
-import come.revature.controller.Admin;
-import come.revature.controller.Banker;
-import come.revature.controller.Customer;
 import come.revature.daos.AccountDAO;
 import come.revature.daos.AccountDaoImpl;
 
@@ -30,17 +27,17 @@ public class Login {
 			System.out.println(".....Loading Account Info......");
 		
 			AccountDAO aDao = new AccountDaoImpl();
-			AccountObject account = aDao.getAccountbyUserName(userName);
-			
-			if(account.getFirstname() == null) {
+			AccountObject account = aDao.getAccountbyUserName(userName);			
+			if(account.getPhonenumber()!= null ) {
 				Admin admin1 = new Admin();
-				admin1.AdMenu();}
+				admin1.AdMenu();
+			}
 			
-			else if(account.getLastname() == null) {				
+			else if(account.getEmail() != null ) {				
 				Banker banker = new Banker();
 				banker.BankerMenu();					
 				
-			}else if(account.getLastname() != null && account.getPassword().equals(Password) ) {				
+			}else if(account.getUsername() != null) {				
 				Customer customer = new Customer();		
 				customer.CustMenu(account.getCustomerID());		
 				

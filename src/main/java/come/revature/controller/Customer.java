@@ -3,23 +3,12 @@ package come.revature.controller;
 import java.util.Scanner;
 
 import com.revature.models.AccountObject;
-import com.revature.services.AccountService;
-import com.revature.services.Login;
-import com.revature.services.Queries;
 
 import come.revature.daos.AccountDAO;
 import come.revature.daos.AccountDaoImpl;
 
 public class Customer {
-	Scanner scan = new Scanner(System.in);
-	public int Permissions;
-	public String FirstName;
-	public String LastName;
-	public float AccountBalance;
-	public boolean Credit;
-	double TotalFunds = 0.00;
-			
-	
+	Scanner scan = new Scanner(System.in);		
 
 	public void CustMenu(int id) {
 		int CusID = id;
@@ -39,9 +28,7 @@ public class Customer {
 			try {
 				switch (answerNum) {		
 					case 1:	
-						double accountbalance = account.getAccountbalance();
-						
-						
+						double accountbalance = account.getAccountbalance();						
 						System.out.println("You have $" + accountbalance + " in your account.");									
 						break;
 						
@@ -51,17 +38,15 @@ public class Customer {
 						double Funds = Double.parseDouble(AddFunds);	
 						double accountbalance2 = account.getAccountbalance();
 						accountbalance2 = accountbalance2 + Funds;
-						aDao.updateAccountBalance(accountbalance2, CusID);
-						break;										
-						
+						aDao.updateAccountBalance(accountbalance2, CusID);						
+						System.out.println("*  You now have $" + accountbalance2 + " in your account. *");						
+						break;								
 			
 					case 3: 
 						System.out.println("How many dollars would you like to take out?");
 						String SubtractFunds = scan.nextLine();
 						double Funds2 = Double.parseDouble(SubtractFunds);	
-						double accountbalance3 = account.getAccountbalance();
-						;						
-							
+						double accountbalance3 = account.getAccountbalance();							
 						
 						if(Funds2 > accountbalance3) {
 							System.out.println("You do not have enough Funds for this transaction.");							
@@ -69,22 +54,17 @@ public class Customer {
 						}else {
 							accountbalance3 = accountbalance3 - Funds2;
 							aDao.updateAccountBalance(accountbalance3, CusID);
-							AccountObject account2 = aDao.getAccountById(id);
-							System.out.println("*************************************");
-							System.out.println("*                                   *");
-							System.out.println("*  You have $" + account2.getAccountbalance() + " in your account. *");
-							System.out.println("*                                   *");
-							System.out.println("*                                   *");
-							System.out.println("*************************************");
-							//subtract funds from "money" column.								
+							AccountObject account22 = aDao.getAccountById(id);							
+							System.out.println("*  You now have $" + account22.getAccountbalance() + " in your account. *");
+																
 						}
 						break;
 						
 					case 4:			
 						System.out.println("Enter new password");
-						String newPassword = scan.nextLine();
-			
-						//Update password FROM TABLE accounts == newPassword;
+						String newPassword = "'"+scan.nextLine()+"'";
+						
+						aDao.updatePassword(newPassword, CusID);
 						break;
 						
 					case 5:			

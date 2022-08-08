@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.revature.models.AccountObject;
 import com.revature.services.AccountService;
+
 import come.revature.daos.AccountDAO;
 import come.revature.daos.AccountDaoImpl;
 
@@ -103,7 +104,8 @@ public class Banker{
 										
 			case "4": 
 				System.out.println("Thank you for using Fakedelity, have a nice day!");
-				System.exit(0);						
+				Login login = new Login();
+				login.TheLogin();						
 			
 			default: System.out.println("Choose a valid number");			
 			BankerMenu();	
