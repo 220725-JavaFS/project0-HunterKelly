@@ -63,10 +63,4 @@ public class PersonalInfo {
 		return "PersonalInfo [accountType=" + accountType + ", checkings=" + checkings + ", savings=" + savings
 				+ ", dogecoin=" + dogecoin + "]";
 	}
-	
-	
-
-
-
-
 }

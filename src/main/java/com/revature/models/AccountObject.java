@@ -1,9 +1,8 @@
 package com.revature.models;
 
 import java.util.Objects;
-import java.lang.AutoCloseable;
+
 public class  AccountObject {
-	
 	
 	private int CustomerID;
 	private String username;
@@ -14,15 +13,6 @@ public class  AccountObject {
 	private PersonalInfo personalInfo;
 	private AccountStatus accountstatus;
 	private AccountStatusBanker accountstatusbanker;
-	
-	
-
-
-	
-
-
-
-
 
 	public AccountObject(int customerID, String username, String password, String firstname, String lastname,
 			double accountbalance, PersonalInfo personalInfo, AccountStatus accountstatus,
@@ -39,7 +29,6 @@ public class  AccountObject {
 		this.accountstatusbanker = accountstatusbanker;
 	}
 
-
 	public AccountObject(String username, String password, String firstname, String lastname, double accountbalance,
 			PersonalInfo personalInfo, AccountStatus accountstatus, AccountStatusBanker accountstatusbanker) {
 		super();
@@ -53,128 +42,66 @@ public class  AccountObject {
 		this.accountstatusbanker = accountstatusbanker;
 	}
 
-
-
 	public AccountObject() {
 		super();
 		
 	}
 
-
-
-
-
 	public int getCustomerID() {
 		return CustomerID;
 	}
-
-
-
-
 
 	public void setCustomerID(int customerID) {
 		CustomerID = customerID;
 	}
 
-
-
-
-
 	public String getUsername() {
 		return username;
 	}
-
-
-
-
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-
-
-
-
 	public String getPassword() {
 		return password;
 	}
-
-
-
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-
-
-
 	public String getFirstname() {
 		return firstname;
 	}
-
-
-
-
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
 
-
-
-
-
 	public String getLastname() {
 		return lastname;
 	}
-
-
-
-
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
 
-
-
-
-
 	public double getAccountbalance() {
 		return accountbalance;
 	}
-
-
-
-
 
 	public void setAccountbalance(double accountbalance) {
 		this.accountbalance = accountbalance;
 	}
 
-
-
-
-
 	public PersonalInfo getPersonalInfo() {
 		return personalInfo;
 	}
 
-
-
-
-
 	public void setPersonalInfo(PersonalInfo personalInfo) {
 		this.personalInfo = personalInfo;
 	}
-
-
-
-
 
 	public AccountStatus getAccountstatus() {
 		return accountstatus;
@@ -188,18 +115,15 @@ public class  AccountObject {
 		return accountstatusbanker;
 	}
 
-
 	public void setAccountstatusbanker(AccountStatusBanker accountstatusbanker) {
 		this.accountstatusbanker = accountstatusbanker;
 	}
-
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(CustomerID, accountbalance, accountstatus, accountstatusbanker, firstname, lastname,
 				password, personalInfo, username);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -219,21 +143,11 @@ public class  AccountObject {
 				&& Objects.equals(username, other.username);
 	}
 
-
 	@Override
 	public String toString() {
 		return "AccountObject [CustomerID=" + CustomerID + ", username=" + username + ", password=" + password
 				+ ", firstname=" + firstname + ", lastname=" + lastname + ", accountbalance=" + accountbalance
 				+ ", personalInfo=" + personalInfo + ", accountstatus=" + accountstatus + ", accountstatusbanker="
 				+ accountstatusbanker + "]";
-	}
-
-
-
-	
-	
-	
-		
-	
-	
+	}	
 }

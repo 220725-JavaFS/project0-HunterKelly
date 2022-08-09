@@ -19,7 +19,7 @@ import com.revature.services.ConnectionUtil;
 
 public class AccountDaoImpl implements AccountDAO{
 
-	@Override
+	@Override		//Loads a single customer account into an object 
 	public AccountObject getAccountById(int id) {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			String sql = "SELECT * FROM customer_accounts LEFT JOIN accounts ON accounts.account_type = "
@@ -44,6 +44,8 @@ public class AccountDaoImpl implements AccountDAO{
 						null,
 						null
 						);
+				
+				//This gets all 3 foreign key tables loaded into the account object
 				String personalUser = result.getString("account_type");	
 				String accountStatus = result.getString("email");
 				String accountStatusBanker = result.getString("phone_number");
@@ -78,7 +80,7 @@ public class AccountDaoImpl implements AccountDAO{
 		return null;
 	}
 	
-@Override
+@Override		//Grabs every customer and all the values from all tables and loads into a list of account objects.
 	public List<AccountObject> getAllAccounts() {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			String sql = "SELECT * FROM customer_accounts LEFT JOIN accounts ON accounts.account_type = "
@@ -105,6 +107,8 @@ public class AccountDaoImpl implements AccountDAO{
 						null,
 						null
 						);
+				
+				//This gets all 3 foreign key tables loaded into the account object
 				String personalUser = result.getString("account_type");	
 				String accountStatus = result.getString("email");
 				String accountStatusBanker = result.getString("phone_number");
@@ -137,8 +141,7 @@ public class AccountDaoImpl implements AccountDAO{
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
-	
+		return null;	
 	}
 
 	
@@ -196,6 +199,7 @@ public class AccountDaoImpl implements AccountDAO{
 		}
 		
 	}
+	//Loads a single customer account into an object, this method is used for logging in.
 	public AccountObject getAccountbyUserName(String username) {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			String sql = "SELECT * FROM customer_accounts LEFT JOIN accounts ON accounts.account_type = "
@@ -220,6 +224,8 @@ public class AccountDaoImpl implements AccountDAO{
 						null,
 						null
 						);
+				
+				//This gets all 3 foreign key tables loaded into the account object
 				String personalUser = result.getString("account_type");	
 				String accountStatus = result.getString("email");
 				String accountStatusBanker = result.getString("phone_number");
@@ -253,8 +259,8 @@ public class AccountDaoImpl implements AccountDAO{
 		}
 		return null;
 	}
-
-	@Override
+				
+	@Override		//Sets the customers account balance to the new amount added or subtracted
 	public void updateAccountBalance(double Accountbalance,int id) {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			String sql = "UPDATE customer_accounts SET account_balance = " + Accountbalance + " WHERE customer_id = " + id + ";";
@@ -276,10 +282,7 @@ public class AccountDaoImpl implements AccountDAO{
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
-		}
-		
-	}
-	
-	
+		}		
+	}	
 	
 }

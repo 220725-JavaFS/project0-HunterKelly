@@ -5,18 +5,13 @@ import java.util.Scanner;
 
 import com.revature.models.AccountObject;
 import com.revature.services.AccountService;
-import com.revature.services.Queries;
-
 import come.revature.daos.AccountDAO;
 import come.revature.daos.AccountDaoImpl;
-
 
 public class Admin {
 	
 	Scanner scan = new Scanner(System.in);			
-	private AccountService accountService = new AccountService();
-	
-	
+	private AccountService accountService = new AccountService();	
 	
 	public void AdMenu() {
 		System.out.println("");
@@ -28,8 +23,7 @@ public class Admin {
 		System.out.println("5. Logout");
 		System.out.println("");
 		String answer = scan.nextLine();
-		switch (answer) {		
-		
+		switch (answer) {			
 			case "1":				
 				List<AccountObject> list = accountService.AccountsAssemble();
 				System.out.println("Here are all of the customer records: ");
@@ -50,9 +44,9 @@ public class Admin {
 				AccountDAO aDao2 = new AccountDaoImpl();
 				AccountObject account2 = aDao2.getAccountById(Deletethis);						
 				System.out.println(account2 + " " + "\n has been removed from the database.");
-				aDao2.deleteAccount(Deletethis);
-				
+				aDao2.deleteAccount(Deletethis);				
 				break;
+				
 			case "4":
 				Banker bankerlogin = new Banker();
 				bankerlogin.BankerMenu();
@@ -66,9 +60,7 @@ public class Admin {
 			default: 
 				System.out.println("Choose a valid number");
 				break;
-			}	
-			AdMenu();
-		}
-	
-	
+		}	
+		AdMenu();
+	}	
 }

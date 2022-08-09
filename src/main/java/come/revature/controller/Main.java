@@ -2,14 +2,10 @@ package come.revature.controller;
 
 import java.util.Scanner;
 
-import com.revature.services.Queries;
-
-
-
 //Welcome! Notes: 
-//Admin login is admin and password
-//Banker login is banker and password
-//An example customer login is THanks and password
+//Admin login is Admin and password
+//Banker login is Banker and password
+//An example customer login is HKelly and password
 
 public class Main {
 	
@@ -23,11 +19,8 @@ public class Main {
 		System.out.println("2. Create a new bankaccount and login");
 		System.out.println("");
 		System.out.println("*************************************");
-		String NewCus = myObj.nextLine();
-		
-		
-		switch (NewCus) {
-		
+		String NewCus = myObj.nextLine();		
+		switch (NewCus) {		
 			case "1": 
 				Login DotheLogin = new Login();
 				DotheLogin.TheLogin();
@@ -36,8 +29,7 @@ public class Main {
 			case "2":
 				CreateAccount Theaccount = new CreateAccount();
 				Theaccount.CreateTheAccount();
-				break;
-				
+				break;				
 		
 			default:
 			System.out.println("You must enter 1 or 2. Restart the Application and try again.");

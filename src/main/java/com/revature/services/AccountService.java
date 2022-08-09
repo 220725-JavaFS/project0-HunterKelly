@@ -21,6 +21,4 @@ public class AccountService {
 	public void recruitCustomer(AccountObject account) {
 		accountDao.insertAccount(account);
 	}
-	
-	
 }
