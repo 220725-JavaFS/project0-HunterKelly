@@ -19,7 +19,7 @@ public class Banker{
 	public void BankerMenu() {
 		System.out.println("");
 		System.out.println("Welcome Banker, please choose a number from the following");		
-		System.out.println("1. Print out all Customer Records");
+		System.out.println("1. Print out all Customer Records ");
 		System.out.println("2. Search Customer Records");
 		System.out.println("3. Change Customer Account Type");		
 		System.out.println("4. Logout");
@@ -64,13 +64,14 @@ public class Banker{
 				}
 				AccountDAO aDao2 = new AccountDaoImpl();
 				AccountObject account2 = aDao2.getAccountById(answerNum2);
+				if (account2 == null) {
+					System.out.println("That is not a valid customer id. Returning to menu.");
+					BankerMenu();
+				}else {
 				System.out.println("Here is your customer: \n" + account2 );
+				}
 				
-				String accountType = "";
-				String newAccountType = "";
-				accountType = account2.getPersonalInfo().getAccountType();
-				
-				
+				String newAccountType = "";				
 				System.out.println("What type of Account will the Customer change into?");
 				System.out.println("1. Checkings");
 				System.out.println("2. Savings");

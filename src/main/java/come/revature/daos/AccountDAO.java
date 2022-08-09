@@ -18,6 +18,7 @@ public interface AccountDAO {
 	public abstract AccountObject getAccountbyUserName(String username);
 
 	public void updateAccountBalance(double Accountbalance, int id);
-
 	public void updatePassword(String password, int id);
+
+	
 }

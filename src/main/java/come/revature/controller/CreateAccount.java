@@ -14,10 +14,12 @@ import come.revature.daos.AccountDaoImpl;
 		
 		public class CreateAccount {
 		
-		Scanner myObj = new Scanner(System.in);
-		private AccountService accountService = new AccountService();		
-		public void CreateTheAccount() {
-			AccountObject accountObject = new AccountObject();
+		private Scanner myObj = new Scanner(System.in);
+		private AccountService accountService = new AccountService();
+		private AccountObject accountObject = new AccountObject();
+		private WhichAccountType whichAccountType = new WhichAccountType();
+		
+		public void CreateTheAccount() {			
 			
 			System.out.println("Welcome new customer! Lets start off by creating a new account.");
 			System.out.println("First, we need to collect some basic information.\n");
@@ -38,6 +40,8 @@ import come.revature.daos.AccountDaoImpl;
 			
 			System.out.println("How much would you like to deposit into your new account?");
 			accountObject.setAccountbalance(Double.parseDouble(myObj.nextLine()));					
+			
+			
 			
 			System.out.println("What kind of account would you like to open? ");
 			System.out.println("1. Checking: 1.5% growth");
@@ -66,6 +70,8 @@ import come.revature.daos.AccountDaoImpl;
 					accountObject.getPersonalInfo().setAccountType(answer);
 					System.out.println("You will gain 5% interest annually. DISCLAIMER: YOU MAY OR MAY NOT LOSE ALL YOUR MONEY!");
 					break;
+				default: 
+					System.out.println("You must type 1, 2, or 3, to select an option");
 			}							
 			System.out.println("Thank you for the information, you may now login to your new account!");			
 			accountService.recruitCustomer(accountObject);			

@@ -12,6 +12,8 @@ import java.util.List;
 
 
 import com.revature.models.AccountObject;
+import com.revature.models.AccountStatus;
+import com.revature.models.AccountStatusBanker;
 import com.revature.models.PersonalInfo;
 import com.revature.services.ConnectionUtil;
 
@@ -21,7 +23,11 @@ public class AccountDaoImpl implements AccountDAO{
 	public AccountObject getAccountById(int id) {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			String sql = "SELECT * FROM customer_accounts LEFT JOIN accounts ON accounts.account_type = "
-						+ "customer_accounts.account_type WHERE customer_id = " + id + ";";
+					+ "customer_accounts.account_type LEFT JOIN account_status_admin ON account_status_admin.email ="
+					+ "customer_accounts.email "
+					+ "LEFT JOIN account_status_banker ON account_status_banker.phone_number = "
+					+ "customer_accounts.phone_number"
+					+ " WHERE customer_id = " + id + ";";
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(sql);
 			
@@ -33,12 +39,14 @@ public class AccountDaoImpl implements AccountDAO{
 						result.getString("the_password"),
 						result.getString("first_name"),
 						result.getString("last_name"),
-						result.getDouble("account_balance"),
-						result.getString("email"),
-						result.getString("phone_number"),
-						null							
+						result.getDouble("account_balance"),						
+						null,
+						null,
+						null
 						);
-				String personalUser = result.getString("account_type");					
+				String personalUser = result.getString("account_type");	
+				String accountStatus = result.getString("email");
+				String accountStatusBanker = result.getString("phone_number");
 				if(personalUser != null) {		
 					PersonalInfo customerInfo = new PersonalInfo();	
 					customerInfo.setAccountType(personalUser);
@@ -46,6 +54,18 @@ public class AccountDaoImpl implements AccountDAO{
 					customerInfo.setCheckings(result.getDouble("savings"));
 					customerInfo.setCheckings(result.getDouble("dogecoin"));					
 					AccountObject.setPersonalInfo(customerInfo);
+					
+				}if(accountStatus != null) {		
+					AccountStatus customerInfo2 = new AccountStatus();	
+					customerInfo2.setEmail(accountStatus);					
+					customerInfo2.setAccountstatus(result.getBoolean("administrator"));						
+					AccountObject.setAccountstatus(customerInfo2);
+					
+				}if(accountStatusBanker != null) {		
+					AccountStatusBanker customerInfo3 = new AccountStatusBanker();	
+					customerInfo3.setPhonenumber(accountStatusBanker);					
+					customerInfo3.setBanker(result.getBoolean("administrator"));					
+					AccountObject.setAccountstatusbanker(customerInfo3);
 				}
 						
 				return AccountObject;
@@ -61,7 +81,12 @@ public class AccountDaoImpl implements AccountDAO{
 @Override
 	public List<AccountObject> getAllAccounts() {
 		try(Connection conn = ConnectionUtil.getConnection()){
-			String sql = "SELECT * FROM customer_accounts LEFT JOIN accounts ON accounts.account_type = customer_accounts.account_type;";
+			String sql = "SELECT * FROM customer_accounts LEFT JOIN accounts ON accounts.account_type = "
+					+ "customer_accounts.account_type LEFT JOIN account_status_admin ON account_status_admin.email ="
+					+ "customer_accounts.email "
+					+ "LEFT JOIN account_status_banker ON account_status_banker.phone_number = "
+					+ "customer_accounts.phone_number;";
+					
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(sql);
 			
@@ -69,26 +94,40 @@ public class AccountDaoImpl implements AccountDAO{
 		
 			while(result.next()) { //resultSets are cursor based, each time.next is called the cursor moves to the
 						   		   //next group of values. It starts one before so you always need to call next.
-					AccountObject AccountObject = new AccountObject(
-							result.getInt("customer_id"),
-							result.getString("user_name"),						
-							result.getString("the_password"),
-							result.getString("first_name"),
-							result.getString("last_name"),
-							result.getDouble("account_balance"),
-							result.getString("email"),
-							result.getString("phone_number"),
-							null							
-							);
-					String personalUser = result.getString("account_type");					
-						if(personalUser != null) {						
-							PersonalInfo customerInfo = new PersonalInfo();	
-							customerInfo.setAccountType(personalUser);
-							customerInfo.setCheckings(result.getDouble("checkings"));
-							customerInfo.setCheckings(result.getDouble("savings"));
-							customerInfo.setCheckings(result.getDouble("dogecoin"));					
-							AccountObject.setPersonalInfo(customerInfo);
-						}
+				AccountObject AccountObject = new AccountObject(
+						result.getInt("customer_id"),
+						result.getString("user_name"),						
+						result.getString("the_password"),
+						result.getString("first_name"),
+						result.getString("last_name"),
+						result.getDouble("account_balance"),						
+						null,
+						null,
+						null
+						);
+				String personalUser = result.getString("account_type");	
+				String accountStatus = result.getString("email");
+				String accountStatusBanker = result.getString("phone_number");
+				if(personalUser != null) {		
+					PersonalInfo customerInfo = new PersonalInfo();	
+					customerInfo.setAccountType(personalUser);
+					customerInfo.setCheckings(result.getDouble("checkings"));
+					customerInfo.setCheckings(result.getDouble("savings"));
+					customerInfo.setCheckings(result.getDouble("dogecoin"));					
+					AccountObject.setPersonalInfo(customerInfo);
+					
+				}if(accountStatus != null) {		
+					AccountStatus customerInfo2 = new AccountStatus();	
+					customerInfo2.setEmail(accountStatus);					
+					customerInfo2.setAccountstatus(result.getBoolean("administrator"));						
+					AccountObject.setAccountstatus(customerInfo2);
+					
+				}if(accountStatusBanker != null) {		
+					AccountStatusBanker customerInfo3 = new AccountStatusBanker();	
+					customerInfo3.setPhonenumber(accountStatusBanker);					
+					customerInfo3.setBanker(result.getBoolean("administrator"));					
+					AccountObject.setAccountstatusbanker(customerInfo3);
+				}
 						
 						accountList.add(AccountObject);
 				}
@@ -160,7 +199,11 @@ public class AccountDaoImpl implements AccountDAO{
 	public AccountObject getAccountbyUserName(String username) {
 		try(Connection conn = ConnectionUtil.getConnection()){
 			String sql = "SELECT * FROM customer_accounts LEFT JOIN accounts ON accounts.account_type = "
-						+ "customer_accounts.account_type WHERE user_name = " + username + ";";
+						+ "customer_accounts.account_type LEFT JOIN account_status_admin ON account_status_admin.email ="
+						+ "customer_accounts.email "
+						+ "LEFT JOIN account_status_banker ON account_status_banker.phone_number = "
+						+ "customer_accounts.phone_number"
+						+ " WHERE user_name = " + username + ";";
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(sql);
 			
@@ -172,12 +215,14 @@ public class AccountDaoImpl implements AccountDAO{
 						result.getString("the_password"),
 						result.getString("first_name"),
 						result.getString("last_name"),
-						result.getDouble("account_balance"),
-						result.getString("email"),
-						result.getString("phone_number"),
-						null							
+						result.getDouble("account_balance"),						
+						null,
+						null,
+						null
 						);
-				String personalUser = result.getString("account_type");					
+				String personalUser = result.getString("account_type");	
+				String accountStatus = result.getString("email");
+				String accountStatusBanker = result.getString("phone_number");
 				if(personalUser != null) {		
 					PersonalInfo customerInfo = new PersonalInfo();	
 					customerInfo.setAccountType(personalUser);
@@ -185,6 +230,18 @@ public class AccountDaoImpl implements AccountDAO{
 					customerInfo.setCheckings(result.getDouble("savings"));
 					customerInfo.setCheckings(result.getDouble("dogecoin"));					
 					AccountObject.setPersonalInfo(customerInfo);
+					
+				}if(accountStatus != null) {		
+					AccountStatus customerInfo2 = new AccountStatus();	
+					customerInfo2.setEmail(accountStatus);					
+					customerInfo2.setAccountstatus(result.getBoolean("administrator"));						
+					AccountObject.setAccountstatus(customerInfo2);
+					
+				}if(accountStatusBanker != null) {		
+					AccountStatusBanker customerInfo3 = new AccountStatusBanker();	
+					customerInfo3.setPhonenumber(accountStatusBanker);					
+					customerInfo3.setBanker(result.getBoolean("administrator"));					
+					AccountObject.setAccountstatusbanker(customerInfo3);
 				}
 						
 				return AccountObject;
@@ -223,7 +280,6 @@ public class AccountDaoImpl implements AccountDAO{
 		
 	}
 	
-
-
+	
 	
 }

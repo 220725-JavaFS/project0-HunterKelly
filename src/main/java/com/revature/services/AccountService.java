@@ -3,8 +3,6 @@ package com.revature.services;
 import java.util.List;
 
 import com.revature.models.AccountObject;
-import com.revature.models.PersonalInfo;
-
 import come.revature.daos.AccountDAO;
 import come.revature.daos.AccountDaoImpl;
 
@@ -23,4 +21,6 @@ public class AccountService {
 	public void recruitCustomer(AccountObject account) {
 		accountDao.insertAccount(account);
 	}
+	
+	
 }

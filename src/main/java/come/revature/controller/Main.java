@@ -44,7 +44,7 @@ public class Main {
 			System.exit(0);
 		}
 		//Close Scanner, uncomment later.
-		//myObj.close();		
+		myObj.close();		
 	}
 
 }

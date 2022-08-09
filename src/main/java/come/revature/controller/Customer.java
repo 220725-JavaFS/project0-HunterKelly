@@ -38,8 +38,12 @@ public class Customer {
 						double Funds = Double.parseDouble(AddFunds);	
 						double accountbalance2 = account.getAccountbalance();
 						accountbalance2 = accountbalance2 + Funds;
-						aDao.updateAccountBalance(accountbalance2, CusID);						
-						System.out.println("*  You now have $" + accountbalance2 + " in your account. *");						
+						aDao.updateAccountBalance(accountbalance2, CusID);	
+						System.out.println("******************************************");
+						System.out.println("");
+						System.out.println("*  You now have $" + accountbalance2 + " in your account. *");
+						System.out.println("");
+						System.out.println("******************************************");
 						break;								
 			
 					case 3: 
@@ -54,9 +58,12 @@ public class Customer {
 						}else {
 							accountbalance3 = accountbalance3 - Funds2;
 							aDao.updateAccountBalance(accountbalance3, CusID);
-							AccountObject account22 = aDao.getAccountById(id);							
+							AccountObject account22 = aDao.getAccountById(id);
+							System.out.println("******************************************");
+							System.out.println("");
 							System.out.println("*  You now have $" + account22.getAccountbalance() + " in your account. *");
-																
+							System.out.println("");
+							System.out.println("******************************************");								
 						}
 						break;
 						

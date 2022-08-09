@@ -33,12 +33,10 @@ public class Admin {
 			case "1":				
 				List<AccountObject> list = accountService.AccountsAssemble();
 				System.out.println("Here are all of the customer records: ");
-				for(AccountObject a:list) {
+				for(AccountObject a:list) {					
 					System.out.println(a);
 				}
-				break;
-				
-				
+				break;		
 			
 			case "2": 				
 				CreateAccount Theaccount = new CreateAccount();
