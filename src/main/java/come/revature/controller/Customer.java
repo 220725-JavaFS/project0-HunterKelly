@@ -41,7 +41,11 @@ public class Customer {
 					System.out.println("How much money would you like to add?");
 					String AddFunds = scan.nextLine();
 					try{
-						double Funds = Double.parseDouble(AddFunds);						
+						double Funds = Double.parseDouble(AddFunds);
+						if (Funds <0) {
+							System.out.println("You must enter a positive number");
+							break;
+						}
 						double accountbalance2 = account.getAccountbalance();
 						accountbalance2 = accountbalance2 + Funds;
 						aDao.updateAccountBalance(accountbalance2, CusID);
